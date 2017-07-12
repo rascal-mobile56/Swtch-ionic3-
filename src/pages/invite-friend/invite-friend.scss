@@ -1,0 +1,21 @@
+page-invite-friend {
+
+  .textbox{
+    padding: 0px;
+
+  .textarea{
+      border: 1px solid;
+      padding: 5px;
+      height: 25vh;
+      max-height: 500px;
+      border-radius: 2px;
+
+      .text-input{
+        height: 100%;
+      }
+    }
+    .item-inner{
+      padding: 0px !important;
+    }
+  }
+}

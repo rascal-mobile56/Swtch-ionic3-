@@ -1,0 +1,123 @@
+page-user-profile {
+  .user_title{
+    font-size: 22px;
+    text-align: center;
+    margin: 10px auto;
+  }
+  .background{
+    width: 100%;
+    height: 35vh;
+    background-size: 100% auto;
+    position: relative;
+
+    .bg_img{
+      width: 100vw;
+      height: 35vh;
+    }
+    .profile_img{
+      bottom: 0px;
+      position: absolute;
+      width: 20vw;
+      margin: 8px;
+      border: 2px solid #ffffff;
+      border-radius: 1px;
+    }
+    .name{
+      position: absolute;
+      float: left;
+      bottom: 5px;
+      left: 20vw;
+      margin-left: 13px;
+      margin-bottom: 5px;
+      p {
+        color: white;
+        font-size: 17px;
+      }
+    }
+    .feedback{
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      img{
+        width: 30px;
+        float: right;
+        margin-top: 14px;
+      }
+      p{
+        float: right;
+        text-align: center;
+        color: #ffffff;
+      }
+    }
+  }
+  .group{
+    width: 100%;
+
+    .item-divider{
+      padding: 0px;
+      .label{
+          margin: 0;
+      }
+      .section-header{
+        background-color: #008ecf;
+        color: white;
+        width: 100%;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        p{
+          color: #ffffff;
+        }
+      }
+      .updated-date{
+        background-color: rgb(45, 115, 186);
+        width:100%;
+        color:white;
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+    .detail{
+      p{
+        margin: 5px 0;
+        padding-left: 20vw;
+      }
+      .title1{
+        padding-left: 17vw;
+        font-weight: 500;
+        font-size: 17px;
+      }
+      .icon-tt{
+        font-size: 17px;
+        padding-right: 5px;
+        color: blue;
+        font-weight: 900;
+      }
+    }
+
+  }
+  .map-item{
+    margin: 5px ;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid;
+  }
+  #map {
+    width: 100%;
+    height: 200px;
+  }
+  .monthview-container{
+    height: 275px !important;
+  }
+  .weekview-container{
+    height: 275px !important;
+  }
+  .dayview-container{
+    height: 275px !important;
+  }
+  .btn{
+    button{
+      padding: 3vw !important;
+    }
+  }
+}

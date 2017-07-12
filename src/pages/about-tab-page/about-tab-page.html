@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>About</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngFor="let item of pages" >
+    <button ion-button full class="setting_btn" (click)="goAboutPage(item.title, item.url)">
+      <ion-icon name="{{item.icon}}" class="icon1"></ion-icon>
+      <p class="title">{{item.title}}</p>
+      <ion-icon name="ios-arrow-forward-outline" style="margin-right: -5px;"></ion-icon>
+    </button>
+  </div>
+</ion-content>

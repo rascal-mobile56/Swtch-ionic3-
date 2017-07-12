@@ -1,0 +1,45 @@
+page-settings {
+
+.thumbDiv{
+  width: 100%;
+  height: auto;
+
+  .thumb{
+    width: 50%;
+    float: left;
+    margin-top: 40px;
+
+    .set{
+      width: 100px;
+      margin: 0 auto;
+      display: block;
+      border: 5px solid #37404d;
+      border-radius: 25%;
+    }
+    p{
+      text-align: center;
+      font-size: 17px;
+      margin: 10px 0;
+    }
+  }
+  .thumb2{
+    width: 100%;
+    float: left;
+    margin-top: 40px;
+    img{
+      width: 100px;
+      margin: 0 auto;
+      display: block;
+      border: 5px solid #37404d;
+      border-radius: 25%;
+    }
+    p{
+      text-align: center;
+      font-size: 17px;
+      margin: 10px 0;
+    }
+  }
+
+
+}
+}

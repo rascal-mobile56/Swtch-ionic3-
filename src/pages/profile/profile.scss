@@ -1,0 +1,71 @@
+page-profile {
+.pro_page{
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  .info{
+    width: 60%;
+    float: left;
+    p{
+      text-align: center;
+      margin: 10px 0;
+    }
+    .name{
+      font-size: 17px;
+      font-weight: 500;
+    }
+  }
+  .avatar{
+    width: 40%;
+    float: left;
+      img{
+        width: 80px;
+        display: block;
+        margin: 0 auto;
+        border: 1px solid blue;
+        border-radius: 50%;
+      }
+    }
+  }
+  .profile_div{
+    position: relative;
+    margin-top: 10px;
+
+    .title_div{
+      width: 100%;
+      background-color: #6de2a1;
+      vertical-align: middle;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+
+      p{
+        text-align: center;
+        margin: 7px 0;
+      }
+      button{
+        position: absolute;
+        right: 5px;
+        top: 7px;
+      }
+    }
+    .data-font{
+
+      .cond{
+        padding: 6px 0;
+
+        .condition1{
+          width: 40%;
+          text-align: center;
+        }
+        .condition2{
+          width: 60%;
+          text-align: center;
+          font-size: 15px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

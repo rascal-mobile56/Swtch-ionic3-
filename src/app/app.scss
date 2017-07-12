@@ -1,0 +1,59 @@
+.sign_bg{
+  background: url("../assets/image/background.png");
+  text-align: center;
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+  filter: blur(3px);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+  color: #ffffff;
+}
+.menu-title{
+  height: 150px;
+  .logo_img{
+    position: absolute;
+    top: 10px;
+    width: 30px;
+    left: 10px;
+  }
+  .profile-div{
+    // margin-top: -85px;
+
+    img{
+      width: 80px;
+      border-radius: 50%;
+      border: 2px solid;
+      margin: 0 auto;
+      display: block;
+    }
+    p{
+      text-align: center;
+      margin: 5px 0;
+    }
+  }
+  .toolbar-background{
+    background-image: url("../assets/image/bg1.png");
+  }
+}
+.toolbar-background{
+    background-color: #33619F;
+}
+.title{
+  .toolbar-title {
+    color: white;
+  }
+}
+.item-block .item-inner{
+  border-bottom: none !important;
+}
+.item-block:last-child{
+  border-bottom: none !important;
+}

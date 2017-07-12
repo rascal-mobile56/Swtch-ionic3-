@@ -1,0 +1,60 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Account</ion-title>
+    <ion-buttons end>
+      <button ion-button class="add_btn" (click)="goEmailAddPage()">
+        <ion-icon name="ios-add-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="data-font" center>
+    <ion-row class="cond" center>
+        <p class="title1">Username:</p>
+        <p class="title2">oyamamadam</p>
+    </ion-row>
+  </div>
+  <p class="title">Email Address</p>
+  <ion-card class="card-div">
+      <ion-item class="div1">
+        <ion-row class="account-content">
+          <div class="condition-div1"><p>address:</p></div>
+          <div class="condition-div2"><p>oyamamamdam@hotmail.com</p></div>
+        </ion-row>
+        <ion-row class="account-content">
+            <div class="condition-div1"><p>Confirmation:</p></div>
+            <div class="condition-div2"><p>o</p></div>
+        </ion-row>
+        <ion-row class="account-content">
+            <div class="condition-div1"><p>Receive Notifications:</p></div>
+            <div class="condition-div2">
+              <ion-item class="toggle_btn">
+                <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+              </ion-item>
+            </div>
+        </ion-row>
+      </ion-item>
+      <div class="div2">
+          <ion-icon name="ios-close-circle-outline" class="icon"></ion-icon>
+      </div>
+    </ion-card>
+    <p class="title">Delete Account</p>
+    <div class="delete">
+      <p>If you delete your account, your personal information (name, phone number, address, email, profile picture, etc.) will be deleted permanently and can't be recovered.
+        All the listings you have created will be removed.
+        You won't be able to reactivate your account.
+      </p>
+      <p>
+        Information where other members are involved (conversations with other people, transactions you've made, reviews you've given to others, etc) is not removed when you delete your account.
+        However, your name will no longer be displayed next to this information.
+      </p>
+      <button ion-button class="save">Delete Account</button>
+    </div>
+
+</ion-content>

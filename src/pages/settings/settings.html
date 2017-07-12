@@ -1,0 +1,39 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="thumbDiv">
+    <div class="thumb" (click)="goProfilePage()">
+      <img class="set" src="assets/icon/person.png" alt="">
+      <p>Profile Info</p>
+    </div>
+    <div class="thumb" (click)="goAccountPage()">
+      <img class="set" src="assets/icon/account.png" alt="">
+      <p>Account</p>
+    </div>
+  </div>
+  <div class="thumbDiv">
+    <div class="thumb" (click)="goNotiPage()">
+      <img class="set" src="assets/icon/notification.png" alt="">
+      <!-- <img src="assets/image/ring.png" alt=""> -->
+      <p>Notifications</p>
+    </div>
+    <div class="thumb" (click)="goCarDetailsPage()">
+      <img class="set" src="assets/icon/car_setting.png" alt="">
+      <p>Car Details</p>
+    </div>
+  </div>
+  <div class="thumbDiv">
+    <div class="thumb2" (click)="goPaymentPage()">
+      <img src="assets/icon/payment.png" alt="" class="payment">
+      <p>Payments</p>
+    </div>
+  </div>
+</ion-content>

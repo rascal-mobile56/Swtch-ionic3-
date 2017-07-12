@@ -1,0 +1,49 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile Edit</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="person">
+    <img src="assets/image/avatar.png" alt="">
+    <button ion-button small color="secondary" >Edit</button>
+  </div>
+  <div class="">
+    <ion-list>
+      <ion-item class="text_input">
+        <ion-label color="primary" stacked>First Name</ion-label>
+        <ion-input type="text" placeholder="First Name" class="txt"></ion-input>
+      </ion-item>
+
+      <ion-item class="text_input">
+        <ion-label color="primary" stacked>Last Name</ion-label>
+        <ion-input type="text" placeholder="Last Name" class="txt"></ion-input>
+      </ion-item>
+
+      <ion-item class="text_input">
+        <ion-label color="primary" stacked>Location</ion-label>
+        <ion-input type="text" placeholder="Location" class="txt"></ion-input>
+      </ion-item>
+
+      <div class="map-item">
+        <div #map id="map"></div>
+      </div>
+
+      <ion-item class="text_input">
+        <ion-label color="primary" stacked>Phone Number</ion-label>
+        <ion-input type="tel" placeholder="Phone Number" class="txt"></ion-input>
+      </ion-item>
+
+      <ion-item class="text_input">
+          <ion-label color="primary" stacked>About You</ion-label>
+          <ion-textarea class="textarea" name="comment" placeholder="About you"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <button ion-button class="save">Save Information</button>
+  </div>
+</ion-content>

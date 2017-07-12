@@ -1,0 +1,64 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Payments</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>First Name</ion-label>
+    <ion-input type="text" placeholder="First Name" class="txt"></ion-input>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>Last Name</ion-label>
+    <ion-input type="text" placeholder="Last Name" class="txt"></ion-input>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>Date of Birth</ion-label>
+    <ion-input type="date" placeholder="" class="txt"></ion-input>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>Address</ion-label>
+    <ion-input type="text" placeholder="Address" class="txt"></ion-input>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>City</ion-label>
+    <ion-input type="text" placeholder="City" class="txt"></ion-input>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>Zip/Postal Code</ion-label>
+    <ion-input type="number" placeholder="Zip/Postal Code" class="txt"></ion-input>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>Province</ion-label>
+    <ion-select class="edit-select">
+      <ion-option *ngFor="let province of provinces" [value]="province.value">{{province.title}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>Account Number</ion-label>
+    <ion-input type="text" placeholder="Account Number" class="txt"></ion-input>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>Transit Number</ion-label>
+    <ion-input type="number" placeholder="Transit Number" class="txt"></ion-input>
+  </ion-item>
+
+  <ion-item class="text_input">
+    <ion-label color="primary" stacked>Financial institution number</ion-label>
+    <ion-input type="number" placeholder="Financial institution number" class="txt"></ion-input>
+  </ion-item>
+
+</ion-content>

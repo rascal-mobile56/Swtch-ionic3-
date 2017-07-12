@@ -1,0 +1,44 @@
+.ios, .md {
+    page-home-tab {
+      .scroll {
+        height: 100%
+      }
+      #map {
+        width: 100%;
+        height: 100%;
+      }
+      .background{
+        width: auto;
+        height: 150px;
+        .bg{
+          width: 200px;
+          height: auto;
+          display: block;
+        }
+        .title{
+          margin-top: -26px;
+          margin-left: 5px;
+          font-size: 17px;
+          color: #81f9a2;
+          font-weight: 400;
+          margin-bottom: 5px;
+          max-width: 200px;
+          position: absolute;
+        }
+        .avatar{
+          width: 24%;
+          border: 1px solid;
+          float: left;
+          margin-right: 10px;
+        }
+        .name{
+          font-size: 15px;
+          color: blue;
+          padding-top: 6px;
+          margin-bottom: -8px;
+        }
+
+      }
+
+    }
+}

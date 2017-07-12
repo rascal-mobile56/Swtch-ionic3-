@@ -1,0 +1,149 @@
+
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="pro_page">
+    <div class="info">
+      <p class="name">Kenji Oyama</p>
+      <p>Maniwa, Japan</p>
+    </div>
+    <div class="avatar">
+      <img src="assets/image/avatar.png"/>
+    </div>
+  </div>
+  <div class="profile_div">
+    <div class="title_div">
+      <p>Profile Information</p>
+      <button (click)="goEditProfilePage(p)">Edit</button>
+    </div>
+    <div class="data-font" center>
+      <ion-row class="cond" center>
+          <div class="condition1">First Name:</div>
+          <div class="condition2">Kenji</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Last Name:</div>
+          <div class="condition2">Oyama</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Location:</div>
+          <div class="condition2">Maniwa-shi, Japan</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Phone:</div>
+          <div class="condition2">+81 123456789</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">About You:</div>
+          <div class="condition2">I am freecer on Upwork</div>
+      </ion-row>
+      <div class="border"></div>
+    </div>
+  </div>
+
+  <div class="profile_div">
+    <div class="title_div">
+      <p>Account</p>
+      <button (click)="goAccountPage(p)">Edit</button>
+    </div>
+    <div class="data-font" center>
+      <ion-row class="cond" center>
+          <div class="condition1">User Name:</div>
+          <div class="condition2">Oyamamadam</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Email Address:</div>
+          <div class="condition2">oyamamadam@hotmail.com</div>
+      </ion-row>
+      <div class="border"></div>
+    </div>
+  </div>
+
+  <div class="profile_div">
+    <div class="title_div">
+      <p>Car Details</p>
+      <button (click)="goCarDetailsPage(p)">Edit</button>
+    </div>
+    <div class="data-font" center>
+      <ion-row class="cond" center>
+          <div class="condition1">Maker:</div>
+          <div class="condition2">Evin Shabsove</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Year:</div>
+          <div class="condition2">2016</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Model:</div>
+          <div class="condition2">ABC123456789</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Color:</div>
+          <div class="condition2">Silver White</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">License Plate Number:</div>
+          <div class="condition2">123456789</div>
+      </ion-row>
+      <div class="border"></div>
+    </div>
+  </div>
+
+  <div class="profile_div">
+    <div class="title_div">
+      <p>Payments</p>
+      <button (click)="goPaymentPage(p)">Edit</button>
+    </div>
+    <div class="data-font" center>
+      <ion-row class="cond" center>
+          <div class="condition1">First Name:</div>
+          <div class="condition2">Evin</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Last Name:</div>
+          <div class="condition2">Shabsove</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Date of Birthday:</div>
+          <div class="condition2">06/21/2017</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Address:</div>
+          <div class="condition2">Howland Ave</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">City:</div>
+          <div class="condition2">Toronto</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">ZIP/Postal Code:</div>
+          <div class="condition2">98476</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Province:</div>
+          <div class="condition2">Toronto</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Account Number:</div>
+          <div class="condition2">123456789</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Transit number:</div>
+          <div class="condition2">ab123456</div>
+      </ion-row>
+      <ion-row class="cond" center>
+          <div class="condition1">Financial institution number:</div>
+          <div class="condition2">123456789</div>
+      </ion-row>
+      <div class="border"></div>
+    </div>
+  </div>
+</ion-content>

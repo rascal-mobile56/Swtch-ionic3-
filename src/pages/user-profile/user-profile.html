@@ -1,0 +1,114 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only clear style="color: #fff;" (click)="dismiss()" left>
+      <ion-icon name="md-arrow-back"></ion-icon>
+    </button>
+    <ion-title>User Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="has-header" style="background-color: #efecec;">
+  <div class="user_title">{{profileData.title}}</div>
+  <div class="background">
+    <img class="bg_img" src="{{bg_img}}" alt="no image">
+    <img *ngIf="author.image_file_name" class="profile_img" src="https://swtch.cloud/system/images/{{author.id}}/small/{{author.image_file_name}}" alt="no background">
+    <img *ngIf="!author.image_file_name" class="profile_img" src="assets/image/avatar.png" alt="no background">
+    <div class="name">
+       <p>{{author.family_name}} {{author.given_name}}</p>
+       <button ion-button block small (click)="sendMessagePage(name)">Contact</button>
+    </div>
+    <div class="feedback">
+    <p>{{profileData.price_cents}}% positive <br>(6/6)</p>
+      <img src="assets/icon/star.png" alt="no star">
+    </div>
+  </div>
+
+  <div color="primary">
+        <h3 style="text-align: center;">{{viewTitle}}</h3>
+        <ion-buttons end class="btn">
+            <button ion-button [disabled]="isToday" (click)="today()" small>Today</button>
+            <button ion-button (click)="changeMode('month')" small>M</button>
+            <button ion-button (click)="changeMode('week')" small>W</button>
+            <button ion-button (click)="changeMode('day')" small>D</button>
+            <button ion-button (click)="loadEvents()" small>Load Events</button>
+        </ion-buttons>
+    </div>
+  <calendar [eventSource]="eventSource"
+              [calendarMode]="calendar.mode"
+              [currentDate]="calendar.currentDate"
+              (onCurrentDateChanged)="onCurrentDateChanged($event)"
+              (onEventSelected)="onEventSelected($event)"
+              (onTitleChanged)="onViewTitleChanged($event)"
+              (onTimeSelected)="onTimeSelected($event)"
+              step="30">
+  </calendar>
+
+
+  <div class="map-item">
+    <div #map id="map"></div>
+  </div>
+
+  <ion-item-group class="group">
+     <ion-item-divider color="light" sticky>
+       <div class="section-header">OutLet</div>
+       <div class="updated-date">2017.07.10</div>
+     </ion-item-divider>
+   <div class="detail">
+      <p class="title1"><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>Tesla</p>
+      <div class="title2">
+         <p>Model S/</p>
+         <p>Model X</p>
+      </div>
+   </div>
+  </ion-item-group>
+
+  <ion-item-group class="group">
+     <ion-item-divider color="light" sticky>
+       <div class="section-header">Network</div>
+       <div class="updated-date">2017.07.10</div>
+     </ion-item-divider>
+   <div class="detail">
+      <p class="title1"><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>Residential</p>
+      <div class="title2">
+         <p>Model S/</p>
+         <p>Model X</p>
+      </div>
+   </div>
+  </ion-item-group>
+
+  <ion-item-group class="group">
+     <ion-item-divider color="light" sticky>
+       <div class="section-header"><p>Time slots available for service(15minute intervals)</p></div>
+       <div class="updated-date">2017.07.10</div>
+     </ion-item-divider>
+   <div class="detail">
+      <p class="title1">Sunday:</p>
+      <div class="title2">
+         <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>1145 - 1515</p>
+      </div>
+      <p class="title1">Moday:</p>
+      <div class="title2">
+        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0600 - 0830</p>
+        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>1000 - 1330</p>
+      </div>
+      <p class="title1">Tuesday:</p>
+      <div class="title2">
+        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0000 - 0630</p>
+      </div>
+      <p class="title1">Wednesday:</p>
+      <div class="title2">
+        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0345 - 0830</p>
+        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>1000 - 1930</p>
+      </div>
+      <p class="title1">Thursday:</p>
+      <div class="title2">
+        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0600 - 0830</p>
+      </div>
+      <p class="title1">Saturday:</p>
+      <div class="title2">
+        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0000 - 0830</p>
+      </div>
+   </div>
+  </ion-item-group>
+</ion-content>

@@ -1,0 +1,22 @@
+
+
+<ion-content class="social">
+  <div class="sign_bg"></div>
+  <div class="sign_pg">
+    <div class="logo">
+      <img src="assets/image/logo_img.png"/>
+    </div>
+    <div class="signDiv">
+      <p>Please enter your email address. We will send your an email to reset your password.</p>
+      <ion-list>
+        <ion-item>
+          <ion-avatar item-start class="social_avatar"><ion-icon ios="ios-mail-outline" md="ios-mail-outline"></ion-icon></ion-avatar>
+          <ion-input type="email" placeholder="Send Email"></ion-input>
+        </ion-item>
+
+      </ion-list>
+      <button ion-button block="true" outline="true" color="dark" round class="sign-btn" (click)="sendEmail();">Send Email</button>
+      <button ion-button block="true" outline="true" color="dark" clear  class="sign-btn" (click)="backHome();" style="height: 30px;">Cancel</button>
+    </div>
+  </div>
+</ion-content>

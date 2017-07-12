@@ -1,0 +1,22 @@
+page-about-tab {
+  .title{
+        width: 100%;
+        text-align: left;
+      }
+      .setting_btn{
+        margin-top: 5vh;
+        height: 50px;
+         p {
+           text-transform: none;
+           margin-left: 20px;
+           font-size: 20px;
+         }
+         .icon1{
+           font-size: 30px;
+           font-weight: 600;
+         }
+         .icon2{
+           margin-right: -5px;
+          }
+      }
+}
