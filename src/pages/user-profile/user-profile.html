@@ -1,14 +1,22 @@
 
+<!-- <ion-header>
+  <ion-navbar>
+    <button ion-button icon-only clear class="header-icon" (click)="dismiss()" left>
+      <ion-icon name="md-arrow-back"></ion-icon>
+    </button>
+    <ion-title>User Profile</ion-title>
+  </ion-navbar>
+</ion-header> -->
 <ion-header>
   <ion-navbar>
-    <button ion-button icon-only clear style="color: #fff;" (click)="dismiss()" left>
+    <button ion-button clear class="header-icon" (click)="dismiss()" left>
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
     <ion-title>User Profile</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="has-header" style="background-color: #efecec;">
+<ion-content style="background-color: #efecec;" class="custom-content">
   <div class="user_title">{{profileData.title}}</div>
   <div class="background">
     <img class="bg_img" src="{{bg_img}}" alt="no image">

@@ -4,6 +4,7 @@ page-profile {
   align-items: center;
   justify-content: center;
   display: flex;
+  height: 120px;
   .info{
     width: 60%;
     float: left;
@@ -50,22 +51,59 @@ page-profile {
         top: 7px;
       }
     }
-    .data-font{
+  }
+  .group{
+    width: 100%;
 
-      .cond{
-        padding: 6px 0;
-
-        .condition1{
-          width: 40%;
-          text-align: center;
-        }
-        .condition2{
-          width: 60%;
-          text-align: center;
-          font-size: 15px;
-          font-weight: 600;
-        }
+    .item-divider{
+      padding: 0px;
+      .label{
+          margin: 0;
       }
+    }
+    .section-header{
+      background-color: #dedede;
+      width: 100%;
+
+      text-align: center;
+      padding: 5px;
+      p{
+        font-size: 18px;
+        color: $font-color;
+      }
+      .edit{
+        position: absolute;
+        right: 5px;
+        font-size: 14px;
+        bottom: 20px;
+        border: 1px solid;
+        border-radius: 3px;
+        color: $font-color;
+      }
+    }
+    .title1{
+
+      .value1{
+        width: 40%;
+        text-align: left;
+        padding: 7px 0px;
+        padding-left: 15px;
+
+      }
+      .value2{
+        width: 60%;
+        text-align: center;
+        padding: 7px 0px;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+    .updated-date{
+      background-color: #a2a2a2;
+      width:100%;
+      color: $font-color;
+      font-size: 12px;
+      text-align: center;
     }
   }
 }

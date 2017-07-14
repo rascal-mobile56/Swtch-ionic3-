@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, ModalController, ViewController, LoadingController } from 'ionic-angular';
 import { UserService } from '../../providers/user-service';
-import { MessagesSendingPage } from '../message-sending/message-sending'
+import { MessagesSendingPage } from '../message-sending/message-sending';
 
 declare var google;
 

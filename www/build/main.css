@@ -25216,7 +25216,31 @@ ion-navbar.toolbar {
 }
 
 .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default {
-  color: #ffffff;
+  color: #0c0c0c;
+}
+
+.item-block {
+  color: #2d2d2d !important;
+}
+
+.toolbar {
+  border-bottom: 1px solid #008ecf;
+}
+
+.header-icon {
+  color: #fff;
+  height: 100%;
+}
+
+.header-icon {
+  color: #fff;
+  height: 100%;
+  padding-left: 10px;
+  color: #2d2d2d;
+}
+
+.custom-content {
+  padding: 16px 0 !important;
 }
 
 .menu-title {
@@ -25244,15 +25268,16 @@ ion-navbar.toolbar {
 }
 
 .menu-title .toolbar-background {
-  background-image: url("../assets/image/bg1.png");
+  background-image: url("../assets/image/bg_middle.png");
 }
 
 .toolbar-background {
-  background-color: #33619F;
+  background-color: #dedede;
 }
 
-.title .toolbar-title {
-  color: white;
+.toolbar-title {
+  color: #2d2d2d;
+  font-size: 18px;
 }
 
 .item-block .item-inner {
@@ -25276,6 +25301,10 @@ page-about-tab .title {
 page-about-tab .setting_btn {
   margin-top: 5vh;
   height: 50px;
+  background-color: #dedede;
+  color: #2d2d2d;
+  -webkit-box-shadow: 1px 1px 5px black;
+  box-shadow: 1px 1px 5px black;
 }
 
 page-about-tab .setting_btn p {
@@ -25582,7 +25611,7 @@ page-forgot .signDiv .gl_btn {
 }
 
 .ios page-home-tab .background .title, .md page-home-tab .background .title {
-  margin-top: -26px;
+  margin-top: -30px;
   margin-left: 5px;
   font-size: 17px;
   color: #81f9a2;
@@ -25590,6 +25619,7 @@ page-forgot .signDiv .gl_btn {
   margin-bottom: 5px;
   max-width: 200px;
   position: absolute;
+  line-height: 15px;
 }
 
 .ios page-home-tab .background .avatar, .md page-home-tab .background .avatar {
@@ -25765,6 +25795,7 @@ page-profile .pro_page {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  height: 120px;
 }
 
 page-profile .pro_page .info {
@@ -25829,20 +25860,61 @@ page-profile .profile_div .title_div button {
   top: 7px;
 }
 
-page-profile .profile_div .data-font .cond {
-  padding: 6px 0;
+page-profile .group {
+  width: 100%;
 }
 
-page-profile .profile_div .data-font .cond .condition1 {
-  width: 40%;
+page-profile .group .item-divider {
+  padding: 0px;
+}
+
+page-profile .group .item-divider .label {
+  margin: 0;
+}
+
+page-profile .group .section-header {
+  background-color: #dedede;
+  width: 100%;
   text-align: center;
+  padding: 5px;
 }
 
-page-profile .profile_div .data-font .cond .condition2 {
+page-profile .group .section-header p {
+  font-size: 18px;
+  color: #2d2d2d;
+}
+
+page-profile .group .section-header .edit {
+  position: absolute;
+  right: 5px;
+  font-size: 14px;
+  bottom: 20px;
+  border: 1px solid;
+  border-radius: 3px;
+  color: #2d2d2d;
+}
+
+page-profile .group .title1 .value1 {
+  width: 40%;
+  text-align: left;
+  padding: 7px 0px;
+  padding-left: 15px;
+}
+
+page-profile .group .title1 .value2 {
   width: 60%;
   text-align: center;
+  padding: 7px 0px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
+}
+
+page-profile .group .updated-date {
+  background-color: #a2a2a2;
+  width: 100%;
+  color: #2d2d2d;
+  font-size: 12px;
+  text-align: center;
 }
 
 page-profile-edit .person {
@@ -26060,6 +26132,170 @@ page-social-sign .signDiv .gl_btn {
   background-color: #ea4335;
 }
 
+page-user-info .bg_title {
+  background: url("../assets/image/4.jpg");
+  width: 100%;
+  height: 50px;
+  opacity: 0.2;
+}
+
+page-user-info .name {
+  position: absolute;
+  top: 12px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+
+page-user-info .profile {
+  height: 150px;
+}
+
+page-user-info .profile .user_img {
+  width: 150px;
+  height: 150px;
+  float: left;
+  padding: 10px;
+}
+
+page-user-info .profile .user_img img {
+  width: 100%;
+}
+
+page-user-info .profile .contact {
+  width: calc(100% - 150px);
+  height: 100%;
+  float: left;
+  vertical-align: middle;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-user-info .profile .contact .btn {
+  width: 100%;
+}
+
+page-user-info .profile .contact .btn .contact_btn {
+  height: 30px;
+  width: 100%;
+  max-width: 200px;
+  border-color: green;
+  color: green;
+  margin: 10px auto;
+  display: block;
+}
+
+page-user-info .box {
+  border: 0.5px solid #bdbdbd;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+page-user-info .listing {
+  padding: 0 10px;
+}
+
+page-user-info .listing .listing_details {
+  position: relative;
+  padding: 10px 5px;
+}
+
+page-user-info .listing .listing_details .rate {
+  position: absolute;
+  top: -10px;
+  right: 5px;
+  background-color: white;
+  height: 30px;
+  line-height: 21px;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+page-user-info .listing .listing_details .user_name {
+  position: absolute;
+  bottom: 0;
+  padding: 5px;
+  color: white;
+  font-size: 18px;
+}
+
+page-user-info .followed {
+  padding: 0 10px;
+}
+
+page-user-info .followed .people {
+  display: inline-block;
+  width: 100%;
+}
+
+page-user-info .followed .people .person {
+  width: 50%;
+  float: left;
+  padding: 10px;
+}
+
+page-user-info .followed .people .person img {
+  width: 100%;
+}
+
+page-user-info .followed .people .person p {
+  margin-top: -25px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+  color: white;
+}
+
+page-user-info .followed .people .person button {
+  margin: 0 auto;
+  display: block;
+  width: 60%;
+  max-width: 150px;
+}
+
+page-user-info .reivew {
+  width: 100%;
+  padding: 10px;
+}
+
+page-user-info .reivew .thumb-list {
+  width: 100%;
+  border: 1px solid #2f2f2f !important;
+  margin: 0 auto;
+  padding-left: 5px;
+  margin-top: 5px;
+  -webkit-box-shadow: 1px 1px 16px #b5b5b5;
+  box-shadow: 1px 1px 16px #b5b5b5;
+}
+
+page-user-info .reivew .thumb-list .user-photo {
+  margin-right: 10px;
+}
+
+page-user-info .reivew .thumb-list .thum-up {
+  font-size: 23px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: green;
+}
+
+page-user-info .reivew .item-block:last-child {
+  border-bottom: 1px solid #2f2f2f !important;
+}
+
 page-user-profile .user_title {
   font-size: 22px;
   text-align: center;
@@ -26085,6 +26321,7 @@ page-user-profile .background .profile_img {
   margin: 8px;
   border: 2px solid #ffffff;
   border-radius: 1px;
+  display: block;
 }
 
 page-user-profile .background .name {

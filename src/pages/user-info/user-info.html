@@ -1,13 +1,99 @@
 
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+    <button ion-button clear class="header-icon" (click)="dismiss()" left>
+      <ion-icon name="md-arrow-back"></ion-icon>
     </button>
     <ion-title>User Information</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>User Information</h3>
+<ion-content class="custom-content">
+
+  <div class="title">
+    <div class="bg_title"></div>
+    <p class="name">{{userAuthor.given_name}} {{userAuthor.family_name}}</p>
+  </div>
+
+  <div class="profile">
+    <div class="user_img">
+      <img *ngIf="!userAuthor.image_file_name" src="assets/icon/avatar.png" alt="">
+      <img *ngIf="userAuthor.image_file_name" src="https://swtch.cloud/system/images/{{userAuthor.id}}/small/{{userAuthor.image_file_name}}" alt="">
+    </div>
+    <div class="contact">
+      <div class="btn">
+        <button ion-button outline middle class="contact_btn" (click)="sendMessagePage(name)">Contact {{userAuthor.given_name}}</button>
+        <button ion-button outline middle class="contact_btn">Follow</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="box"></div>
+
+  <div class="listing">
+    <h2>1 opening listing</h2>
+    <div class="box"></div>
+    <div class="listing_details">
+      <img src="{{bg_img}}" alt="">
+      <p class="rate">$ 1.5-2.5/h</p>
+      <p class="user_name">{{userInfoData.title}}</p>
+    </div>
+  </div>
+
+  <div class="followed">
+    <h2>2 followed people</h2>
+    <div class="box"></div>
+    <div class="people">
+      <div class="person">
+        <img src="assets/icon/avatar1.png" alt="">
+        <p>Black Chai</p>
+        <button ion-button outline small>Follow</button>
+      </div>
+      <div class="person">
+        <img src="assets/icon/avatar2.png" alt="">
+        <p>Maria Toy</p>
+        <button ion-button outline small>Follow</button>
+      </div>
+      <div class="person">
+        <img src="assets/icon/avatar3.png" alt="">
+        <p>Maria Toy</p>
+        <button ion-button outline small>Follow</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reivew">
+    <h2>10 received reviews (100% positive, 10/10)</h2>
+    <div class="box"></div>
+    <ion-list>
+      <ion-item class="thumb-list">
+        <ion-thumbnail item-start class="user-photo">
+          <img src="assets/icon/avatar1.png">
+        </ion-thumbnail>
+        <h3>wow, so nice and super clean</h3>
+        <p>mv_belcourt about listing CargePoint L2 <br> 22 days ago</p>
+        <button ion-button clear item-end class="thum-up"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+      </ion-item>
+
+      <ion-item class="thumb-list">
+        <ion-thumbnail item-start class="user-photo">
+          <img src="assets/icon/avatar2.png">
+        </ion-thumbnail>
+        <h3>Thanks all went well</h3>
+        <p>mastroiapino 1 about listing Pino's evduty <br>30 days ago</p>
+        <button ion-button clear item-end class="thum-up"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+      </ion-item>
+
+      <ion-item class="thumb-list">
+        <ion-thumbnail item-start class="user-photo">
+          <img src="assets/icon/avatar3.png">
+        </ion-thumbnail>
+        <h3>Good Stuff!</h3>
+        <p>Carter Li about listing SWTCH Test Charger<br>2 months ago</p>
+        <button ion-button clear item-end class="thum-up"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+      </ion-item>
+
+    </ion-list>
+  </div>
 </ion-content>

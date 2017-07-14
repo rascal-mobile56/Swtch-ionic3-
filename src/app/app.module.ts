@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { NgCalendarModule  } from 'ionic2-calendar';
 
+// import 'font-awesome';
+
 import { MyApp } from './app.component';
 
 import { HomeTabPage } from '../pages/home-tab-page/home-tab-page';

@@ -57,6 +57,131 @@ export class HomeTabPage {
     let mapOptions = {
       center: latLng,
       zoom: 9,
+      styles:[
+          {
+            "featureType": "administrative",
+            "elementType": "all",
+            "stylers": [
+              {
+                  "saturation": "-100"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.province",
+            "elementType": "all",
+            "stylers": [
+              {
+                  "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape",
+            "elementType": "all",
+            "stylers": [
+              {
+                  "saturation": -100
+              },
+              {
+                  "lightness": 65
+              },
+              {
+                  "visibility": "on"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "all",
+            "stylers": [
+              {
+                  "saturation": -100
+              },
+              {
+                  "lightness": "50"
+              },
+              {
+                  "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "all",
+            "stylers": [
+              {
+                  "saturation": "-100"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "all",
+            "stylers": [
+              {
+                "lightness": "30"
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "all",
+            "stylers": [
+              {
+                "lightness": "40"
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "all",
+            "stylers": [
+              {
+                "saturation": -100
+              },
+              {
+                "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "hue": "#ffff00"
+              },
+              {
+                "lightness": -25
+              },
+              {
+                "saturation": -97
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels",
+            "stylers": [
+              {
+                "lightness": -25
+              },
+              {
+                "saturation": -100
+              }
+            ]
+          }
+      ],
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     }
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
@@ -89,7 +214,7 @@ export class HomeTabPage {
           bg_img = 'https://swtch.cloud/system/images/'+ this.profiles[i].listing_images[0].id +'/small_3x2/' + this.profiles[i].listing_images[0].image_file_name;
 
       } else{
-        bg_img = 'assets/image/bg1.png';
+        bg_img = 'assets/image/bg_small.png';
       }
       let profile_img;
       if(this.profiles[i].author.image_file_name){
@@ -120,7 +245,7 @@ export class HomeTabPage {
 
     google.maps.event.addListener(marker, 'click', () => {
       infoWindow.open(this.map, marker);
-      setTimeout(() => { infoWindow.close(this.map, marker); }, 2500);
+      setTimeout(() => { infoWindow.close(this.map, marker); }, 4000);
     });
 
     google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
@@ -138,15 +263,11 @@ export class HomeTabPage {
     console.log('go UserProfile Page');
     let profileModal = this.modalCtrl.create(UserProfilePage, { id: val });
     profileModal.present();
-    // this.navCtrl.push(UserProfilePage,{
-    //   id: val,
-    // });
   };
   goUserInfoPage(val){
     console.log('go UserInformation Page');
-    this.navCtrl.push(UserInfoPage,{
-      id: val,
-    });
+    let profileModal = this.modalCtrl.create(UserInfoPage, { id: val });
+    profileModal.present();
   }
 
 }

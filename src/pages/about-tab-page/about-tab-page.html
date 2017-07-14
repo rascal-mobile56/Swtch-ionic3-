@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="custom-content" padding>
   <div *ngFor="let item of pages" >
     <button ion-button full class="setting_btn" (click)="goAboutPage(item.title, item.url)">
       <ion-icon name="{{item.icon}}" class="icon1"></ion-icon>

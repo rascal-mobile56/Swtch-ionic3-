@@ -1,3 +1,8 @@
+// @import 'font-awesome';
+
+$font-stack:    Helvetica, sans-serif;
+$font-color: #2d2d2d;
+$background-color: #dedede;
 .sign_bg{
   background: url("../assets/image/background.png");
   text-align: center;
@@ -13,8 +18,28 @@
   height: 100%;
   width: 100%;
 }
+
 .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
-  color: #ffffff;
+  color: #0c0c0c;
+}
+.item-block{
+  color: #2d2d2d !important;
+}
+.toolbar{
+  border-bottom: 1px solid #008ecf;
+}
+.header-icon{
+  color: #fff;
+  height: 100%;
+}
+.header-icon {
+    color: #fff;
+    height: 100%;
+    padding-left: 10px;
+    color: #2d2d2d;
+}
+.custom-content{
+  padding: 16px 0 !important;
 }
 .menu-title{
   height: 150px;
@@ -40,17 +65,18 @@
     }
   }
   .toolbar-background{
-    background-image: url("../assets/image/bg1.png");
+    background-image: url("../assets/image/bg_middle.png");
   }
 }
 .toolbar-background{
-    background-color: #33619F;
+    background-color: $background-color;
 }
-.title{
-  .toolbar-title {
-    color: white;
-  }
+
+.toolbar-title {
+  color: $font-color;
+  font-size: 18px;
 }
+
 .item-block .item-inner{
   border-bottom: none !important;
 }

@@ -6,6 +6,10 @@ page-about-tab {
       .setting_btn{
         margin-top: 5vh;
         height: 50px;
+        background-color: $background-color;
+        color: $font-color;
+        box-shadow: 1px 1px 5px black;
+
          p {
            text-transform: none;
            margin-left: 20px;

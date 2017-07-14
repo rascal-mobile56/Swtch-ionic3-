@@ -19,6 +19,8 @@ import { SettingsPage } from '../pages/settings/settings';
 
 // Vertual page-user-profile
 import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { UserInfoPage } from '../pages/user-info/user-info';
+
 
 
 
@@ -29,7 +31,7 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomeTabPage;
+  rootPage: any = AboutTabPage;
 
   pages: Array<{title: string, component: any, icon: any}>;
 
