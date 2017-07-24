@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <!-- <img *ngIf="!person" src="assets/image/avatar.png" alt="" class="header_img"> -->
+    <img *ngIf="person" src="{{person.picture}}" alt="" class="header_img">
     <ion-title>About</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content class="custom-content" padding>
@@ -15,4 +15,5 @@
       <ion-icon name="ios-arrow-forward-outline" style="margin-right: -5px;"></ion-icon>
     </button>
   </div>
+
 </ion-content>

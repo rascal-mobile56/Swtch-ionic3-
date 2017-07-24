@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, LoadingController, } from 'ionic-angular';
-import { UserService } from '../../providers/user-service';
+import { UserService } from '../../services/user-service';
 import { MessagesSendingPage } from '../message-sending/message-sending';
 
 @Component({
@@ -12,7 +12,7 @@ export class UserInfoPage {
   // userInfoData:any = {}
   public id:string;
   public userInfoData:any = { title:'', open: false };
-  public userAuthor:any = { id:'', username:'', given_name:'', family_name:'', image_file_name:''};
+  public userAuthor:any = { id:'', username:'', given_name:'', family_name:'', description:'', image_file_name:''};
   public bg_img:string;
 
   constructor(
@@ -41,11 +41,11 @@ export class UserInfoPage {
           if(data.success == false){
             console.log("No data");
          }else{
-           this.userInfoData = data;
-           this.userAuthor = data.author;
+           this.userInfoData = data.listing;
+           this.userAuthor = data.listing.author;
            console.log(this.userInfoData);
-           if(data.listing_images.length > 0){
-             this.bg_img = 'https://swtch.cloud/system/images/'+ data.listing_images[0].id + '/big/' + data.listing_images[0].image_file_name;
+           if(this.userInfoData.listing_images.length > 0){
+             this.bg_img = 'https://swtch.cloud/system/images/'+ this.userInfoData.listing_images[0].id + '/big/' + this.userInfoData.listing_images[0].image_file_name;
            }else{
              this.bg_img = 'assets/image/4.jpg';
            }

@@ -15,7 +15,7 @@ page-profile-edit {
     margin: 0 auto;
     display: block;
     margin-top: 5px;
-    background-color: #6b81b1;
+    background-color: gray;
     height: 20px;
   }
 }
@@ -26,6 +26,23 @@ page-profile-edit {
     border: 1px solid;
     border-radius: 3px;
     padding: 0 5px;
+  }
+}
+.address{
+  position: relative;
+  .text_input{
+    width: calc(100% - 50px);
+    border: none !important;
+    margin-top: 10px;
+  }
+  button{
+    width: 40px;
+    position: absolute;
+    bottom: -4px;
+    right: 10px;
+    height: 39px;
+    font-size: 20px;
+    background-color: gray;
   }
 }
 .textarea{

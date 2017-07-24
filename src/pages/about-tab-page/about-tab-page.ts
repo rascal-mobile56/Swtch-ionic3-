@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { AboutListPage } from '../about-list/about-list';
 
 @Component({
@@ -7,7 +7,8 @@ import { AboutListPage } from '../about-list/about-list';
   templateUrl: 'about-tab-page.html'
 })
 export class AboutTabPage {
-pages: Array<{title: string, url: any, icon: any}>;
+  pages: Array<{title: string, url: any, icon: any}>;
+  person:any;
   constructor(
     public navCtrl: NavController,
   ) {
@@ -18,6 +19,12 @@ pages: Array<{title: string, url: any, icon: any}>;
       { title: 'Terms of Use', url: 'assets/TermsOfUse.html', icon: 'ios-copy-outline' },
     ];
   }
+
+  ionViewWillEnter(){
+    this.person = JSON.parse(window.localStorage.getItem('profile'));
+    console.log(this.person);
+  }
+
   goAboutPage(title, url){
     console.log("go AboutPage");
     this.navCtrl.push(AboutListPage, {

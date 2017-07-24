@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
 
@@ -10,25 +12,72 @@ declare var google;
 export class ProfileEditPage {
 
   @ViewChild('map') mapElement: ElementRef;
+  
     map: any;
 
+    lat:string;
+    lng:string;
+    currentLat:number;
+    currentLng:number;
+    address:string = '';
   constructor(
     public navCtrl: NavController,
+    public navParams: NavParams,
+    public  alertCtrl: AlertController,
+    private nativeGeocoder: NativeGeocoder,
+    private geolocation: Geolocation,
 
   ) {
+    this.address = navParams.get("address");
   }
   ionViewDidLoad(){
-      this.loadMap();
-      this.addMarker();
-
+    if(this.address){
+      this.searchAddress(this.address);
+    }else{
+      this.geolocationData();
+    }
   }
-  backPage(){
-    this.navCtrl.pop();
+
+  geolocationData(){
+    this.geolocation.getCurrentPosition().then((res) => {
+        this.currentLat = res.coords.latitude;
+        this.currentLng = res.coords.longitude;
+        this.loadMap(this.currentLat, this.currentLng);
+
+        console.log(this.currentLat + ", " + this.currentLng);
+
+    }).catch((error) => {
+        console.log('Error getting location', error);
+    });
   }
 
-  loadMap() {
-    let latLng = new google.maps.LatLng(43.691657, -79.521701);
+  searchAddress(address){
+    this.nativeGeocoder.forwardGeocode(address)
+      .then((coordinates: NativeGeocoderForwardResult) => this.LatLng(coordinates.latitude, coordinates.longitude))
+      .catch((error: any) => this.undefinedAddress());
+  }
 
+  undefinedAddress(){
+    let alert = this.alertCtrl.create({
+      title: 'Undefined Address!',
+      subTitle: 'Your address is incorrect!',
+      buttons: ['OK']
+    });
+    alert.present();
+    this.geolocationData();
+  }
+
+  LatLng(latitude, longitude){
+    console.log('The coordinates are latitude=' + latitude + ' and longitude=' + longitude);
+    this.lat = latitude;
+    this.lng = longitude;
+    this.loadMap(this.lat, this.lng);
+    this.addMarker();
+  }
+
+
+  loadMap(lat, lng) {
+    let latLng = new google.maps.LatLng(lat, lng);
     let mapOptions = {
       center: latLng,
       zoom: 13,
@@ -38,14 +87,15 @@ export class ProfileEditPage {
   }
 
   addMarker(){
-    console.log("geolocation");
-
     let marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: this.map.getCenter()
     });
+  }
 
+  backPage(){
+    this.navCtrl.pop();
   }
 
 }

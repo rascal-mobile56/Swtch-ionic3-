@@ -1,0 +1,292 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>List Charger</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="custom-content">
+  <div class="">
+    <ion-list>
+      <ion-item class="text_input">
+        <ion-label color="primary" stacked style="font-size: 17px;">Listing Title *</ion-label>
+        <ion-input type="text" class="txt"></ion-input>
+      </ion-item>
+
+      <ion-item class="text_input">
+        <ion-label color="primary" stacked style="font-size: 17px;">Additional Price (hourly dollar amount).</ion-label>
+        <ion-label color="dark" stacked class="info"><ion-icon name="ios-information-circle"></ion-icon>
+          &nbsp;&nbsp;If you wish to add a premium fee on top of the standard 40-50% commission, please indicate the hourly dollar amount here.</ion-label>
+        <ion-input type="number" placeholder="0.00" class="txt"></ion-input>
+      </ion-item>
+
+      <ion-item class="text_input">
+        <ion-label color="primary" stacked style="font-size: 17px;">Detailed description</ion-label>
+        <ion-label color="dark" stacked class="info"><ion-icon name="ios-information-circle"></ion-icon>
+          &nbsp;&nbsp;If your description contains YouTube links, the videos will be shown below the description.</ion-label>
+        <ion-textarea class="textarea" name="comment"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="daily">
+    <h4>Time slots available for service</h4>
+    <ion-grid class="date">
+      <ion-row>
+        <ion-col col-3>Date:</ion-col>
+        <ion-col col-4>From:</ion-col>
+        <ion-col col-4>To:</ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="schedule">
+      <!-- Monday -->
+      <ion-row id="monday">
+        <p style="width: 100%;">Monday:</p>
+        <ion-col col-3>
+          <ion-item class="available">
+            <ion-toggle [(ngModel)]="mon"></ion-toggle>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4 *ngIf="mon"><ion-input type="time" value="" [disabled]="monday"></ion-input></ion-col>
+        <ion-col col-4 *ngIf="mon"><ion-input type="time" value="" [disabled]="monday"></ion-input></ion-col>
+        <ion-col col-1 *ngIf="mon">
+          <button ion-button icon-left small class="add-more" [disabled]="monday"><ion-icon name="md-add-circle"></ion-icon></button>
+        </ion-col>
+        <ion-item *ngIf="mon">
+          <ion-label>Check if listing is Available 24/7</ion-label>
+          <ion-checkbox [(ngModel)]="monday"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+      <!-- Tuesday -->
+      <ion-row id="tuesday">
+        <p style="width: 100%;">Tuesday:</p>
+        <ion-col col-3>
+          <ion-item class="available">
+            <ion-toggle [(ngModel)]="tues" ></ion-toggle>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 *ngIf="tues"><ion-input type="time" value="" [disabled]="tuesday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="tues"><ion-input type="time" value="" [disabled]="tuesday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="tues">
+          <button ion-button icon-left small class="add-more" [disabled]="tuesday"><ion-icon name="md-add-circle"></ion-icon>Add</button>
+        </ion-col>
+        <ion-item *ngIf="tues">
+          <ion-label>Check if listing is Available 24/7</ion-label>
+          <ion-checkbox [(ngModel)]="tuesday"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+      <!-- WednesDay -->
+      <ion-row id="wednesday">
+        <p style="width: 100%;">Wednesday:</p>
+        <ion-col col-3>
+          <ion-item class="available">
+            <ion-toggle [(ngModel)]="wednes" ></ion-toggle>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 *ngIf="wednes"><ion-input type="time" value="" [disabled]="wednesday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="wednes"><ion-input type="time" value="" [disabled]="wednesday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="wednes">
+          <button ion-button icon-left small class="add-more" [disabled]="wednesday"><ion-icon name="md-add-circle"></ion-icon>Add</button>
+        </ion-col>
+        <ion-item *ngIf="wednes">
+          <ion-label>Check if listing is Available 24/7</ion-label>
+          <ion-checkbox [(ngModel)]="wednesday"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+      <!-- Thursday -->
+      <ion-row id="thursday">
+        <p style="width: 100%;">Thursday:</p>
+        <ion-col col-3>
+          <ion-item class="available">
+            <ion-toggle [(ngModel)]="thurs" checked="true"></ion-toggle>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 *ngIf="thurs"><ion-input type="time" value="" [disabled]="thursday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="thurs"><ion-input type="time" value="" [disabled]="thursday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="thurs">
+          <button ion-button icon-left small class="add-more" [disabled]="thursday"><ion-icon name="md-add-circle"></ion-icon>Add</button>
+        </ion-col>
+        <ion-item *ngIf="thurs">
+          <ion-label>Check if listing is Available 24/7</ion-label>
+          <ion-checkbox [(ngModel)]="thursday"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+      <!-- Friday -->
+      <ion-row id="friday">
+        <p style="width: 100%;">Friday:</p>
+        <ion-col col-3>
+          <ion-item class="available">
+            <ion-toggle [(ngModel)]="fri" ></ion-toggle>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 *ngIf="fri"><ion-input type="time" value="" [disabled]="friday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="fri"><ion-input type="time" value="" [disabled]="friday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="fri">
+          <button ion-button icon-left small class="add-more" [disabled]="friday"><ion-icon name="md-add-circle"></ion-icon>Add</button>
+        </ion-col>
+        <ion-item *ngIf="fri">
+          <ion-label>Check if listing is Available 24/7</ion-label>
+          <ion-checkbox [(ngModel)]="friday"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+      <!-- Saturday -->
+      <ion-row id="saturday">
+        <p style="width: 100%;">Saturday:</p>
+        <ion-col col-3>
+          <ion-item class="available">
+            <ion-toggle [(ngModel)]="satur" ></ion-toggle>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 *ngIf="satur"><ion-input type="time" value="" [disabled]="saturday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="satur"><ion-input type="time" value="" [disabled]="saturday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="satur">
+          <button ion-button icon-left small class="add-more" [disabled]="saturday"><ion-icon name="md-add-circle"></ion-icon>Add</button>
+        </ion-col>
+        <ion-item *ngIf="satur">
+          <ion-label>Check if listing is Available 24/7</ion-label>
+          <ion-checkbox [(ngModel)]="saturday"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+      <!-- Sunday -->
+      <ion-row id="sunday">
+        <p style="width: 100%;">Sunday:</p>
+        <ion-col col-3>
+          <ion-item class="available">
+            <ion-toggle [(ngModel)]="sun" ></ion-toggle>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 *ngIf="sun"><ion-input type="time" value="" [disabled]="sunday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="sun"><ion-input type="time" value="" [disabled]="sunday"></ion-input></ion-col>
+        <ion-col col-3 *ngIf="sun">
+          <button ion-button icon-left small class="add-more" [disabled]="sunday"><ion-icon name="md-add-circle"></ion-icon>Add</button>
+        </ion-col>
+        <ion-item *ngIf="sun">
+          <ion-label>Check if listing is Available 24/7</ion-label>
+          <ion-checkbox [(ngModel)]="sunday"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+
+    </div>
+  </div>
+
+  <div class="outlet_network" padding>
+    <div class="on_title">Outlet*</div>
+    <ion-list>
+      <ion-item>
+        <ion-label>EV Plug (J1772)</ion-label>
+        <ion-checkbox [(ngModel)]="ev"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>CCS DCFC</ion-label>
+        <ion-checkbox [(ngModel)]="ccs"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tesla Supercharger</ion-label>
+        <ion-checkbox [(ngModel)]="tesla"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Wall Outlet</ion-label>
+        <ion-checkbox [(ngModel)]="wall"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>CHAdeMO DCFC</ion-label>
+        <ion-checkbox [(ngModel)]="cha"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tesla MOdel S / Model X</ion-label>
+        <ion-checkbox [(ngModel)]="tesla_model"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tesla HPWC (Roadster)</ion-label>
+        <ion-checkbox [(ngModel)]="tesla_hp"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>NEMA 14-50</ion-label>
+        <ion-checkbox [(ngModel)]="nema"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Mennekes (Type 2)</ion-label>
+        <ion-checkbox [(ngModel)]="mennekes"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>EV Plug (Type 3)</ion-label>
+        <ion-checkbox [(ngModel)]="ev_plug"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Wall Outlet(BS1363)</ion-label>
+        <ion-checkbox [(ngModel)]="wall1363"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Wall Outlet(EuroPlug)</ion-label>
+        <ion-checkbox [(ngModel)]="wall_euro"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Blue Commando</ion-label>
+        <ion-checkbox [(ngModel)]="bule"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Wall Outlet(3112)</ion-label>
+        <ion-checkbox [(ngModel)]="wall3112"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Three Phase 32A</ion-label>
+        <ion-checkbox [(ngModel)]="three"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Caravan Mains Socket</ion-label>
+        <ion-checkbox [(ngModel)]="caravan"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <div class="on_title">Network*</div>
+    <ion-list>
+      <ion-item>
+        <ion-label>Redsidential</ion-label>
+        <ion-checkbox [(ngModel)]="redsidential"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Commercial</ion-label>
+        <ion-checkbox [(ngModel)]="commercial"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <div class="on_title">Auto Accept(Note this allow for anyone to book your charger without you screening them first)</div>
+    <ion-item>
+      <ion-label>Auto Accept</ion-label>
+      <ion-checkbox [(ngModel)]="auto"></ion-checkbox>
+    </ion-item>
+  </div>
+
+  <div class="address">
+    <ion-item class="text_input">
+      <ion-label color="primary" stacked>Location</ion-label>
+      <ion-input [(ngModel)] ="address" type="text" placeholder="Location" class="txt"></ion-input>
+    </ion-item>
+    <button ion-button small (click)="searchAddress(address)"><ion-icon name="search"></ion-icon></button>
+  </div>
+
+  <div class="map-item">
+    <div #map id="map"></div>
+  </div>
+
+  <button ion-button class="save">Save Information</button>
+</ion-content>

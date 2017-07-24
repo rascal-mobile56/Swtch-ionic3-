@@ -1,3 +1,24 @@
 page-tabs-controller {
 
+
+.toolbar-content-ios{
+  .header_img{
+    width: 38px;
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    border-radius: 50%;
+  }
+}
+
+.toolbar-content-md{
+  .header_img{
+    width: 38px;
+    position: absolute;
+    right: -38px;
+    top: -8px;
+    border-radius: 50%;
+    }
+  }
+
 }

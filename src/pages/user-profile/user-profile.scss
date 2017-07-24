@@ -22,6 +22,7 @@ page-user-profile {
       border: 2px solid #ffffff;
       border-radius: 1px;
       display: block;
+      background-color: rgba(195, 194, 194, 0.7);
     }
     .name{
       position: absolute;
@@ -51,6 +52,18 @@ page-user-profile {
       }
     }
   }
+
+  .description{
+    padding: 0 10px;
+
+    .about{
+      border: 1px solid;
+      padding: 5px;
+      margin-top: -5px;
+      border-radius: 3px;
+    }
+  }
+
   .group{
     width: 100%;
 
@@ -60,20 +73,20 @@ page-user-profile {
           margin: 0;
       }
       .section-header{
-        background-color: #008ecf;
-        color: white;
+        background-color: #dedede;
         width: 100%;
         font-size: 18px;
         text-align: center;
         padding: 5px;
         p{
-          color: #ffffff;
+          color: $font-color;
+          font-size: 18px;
         }
       }
       .updated-date{
-        background-color: rgb(45, 115, 186);
+        background-color: #a2a2a2;
         width:100%;
-        color:white;
+        color:$font-color;
         font-size: 12px;
         text-align: center;
       }
@@ -121,4 +134,21 @@ page-user-profile {
       padding: 3vw !important;
     }
   }
+
+}
+.md
+{
+  .kkk{
+    width: 100%;
+    .toolbar-content-md{
+        position: absolute;
+        width: 100%;
+        left: 0;
+    }
+    .header-icon{
+      height: 15px;
+    }
+  }
+
+
 }

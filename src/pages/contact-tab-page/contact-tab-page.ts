@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { ContactTeamPage } from '../contact-team/contact-team'
 
 @Component({
@@ -8,10 +8,17 @@ import { ContactTeamPage } from '../contact-team/contact-team'
 })
 export class ContactTabPage {
 
+  person:any;
   constructor(
     public navCtrl: NavController,
 
   ) {
+
+  }
+
+  ionViewWillEnter(){
+    this.person = JSON.parse(window.localStorage.getItem('profile'));
+    console.log(this.person);
   }
 
   goContactTeamPage(){

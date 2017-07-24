@@ -38,8 +38,26 @@
           padding-top: 6px;
           margin-bottom: -8px;
         }
-
       }
 
+      .profile{
+        position: absolute;
+        z-index: 999;
+        right: 5px;
+        top: 5px;
+        img{
+          width: 65px;
+          height: 65px;
+          border: 1px solid black;
+          border-radius: 50%;
+          display: block;
+          margin: 0 auto;
+        }
+        p{
+          text-align: center;
+          margin: 5px 0;
+        }
+
+      }
     }
 }

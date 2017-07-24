@@ -8,7 +8,7 @@
   </ion-navbar>
 </ion-header> -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar class="kkk">
     <button ion-button clear class="header-icon" (click)="dismiss()" left>
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
@@ -16,7 +16,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content style="background-color: #efecec;" class="custom-content">
+<ion-content class="custom-content">
   <div class="user_title">{{profileData.title}}</div>
   <div class="background">
     <img class="bg_img" src="{{bg_img}}" alt="no image">
@@ -30,6 +30,11 @@
     <p>{{profileData.price_cents}}% positive <br>(6/6)</p>
       <img src="assets/icon/star.png" alt="no star">
     </div>
+  </div>
+
+  <div *ngIf="profileData.description" class="description">
+      <p>About <span style="color: #488aff">{{author.family_name}}</span></p>
+      <p class="about">{{profileData.description}}</p>
   </div>
 
   <div color="primary">

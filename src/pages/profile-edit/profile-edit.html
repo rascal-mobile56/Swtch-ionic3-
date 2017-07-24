@@ -5,10 +5,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="custom-content">
+<ion-content class="custom-content" padding>
   <div class="person">
     <img src="assets/image/avatar.png" alt="">
-    <button ion-button small color="secondary" >Edit</button>
+    <button ion-button small>Edit</button>
   </div>
   <div class="">
     <ion-list>
@@ -22,10 +22,14 @@
         <ion-input type="text" placeholder="Last Name" class="txt"></ion-input>
       </ion-item>
 
-      <ion-item class="text_input">
-        <ion-label color="primary" stacked>Location</ion-label>
-        <ion-input type="text" placeholder="Location" class="txt"></ion-input>
-      </ion-item>
+      <div class="address">
+        <ion-item class="text_input">
+          <ion-label color="primary" stacked>Location</ion-label>
+          <ion-input [(ngModel)] ="address" type="text" placeholder="Location" class="txt"></ion-input>
+        </ion-item>
+        <button ion-button small (click)="searchAddress(address)"><ion-icon name="search"></ion-icon></button>
+      </div>
+
 
       <div class="map-item">
         <div #map id="map"></div>

@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, ModalController, ViewController, LoadingController } from 'ionic-angular';
-import { UserService } from '../../providers/user-service';
+import { NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { UserService } from '../../services/user-service';
 import { MessagesSendingPage } from '../message-sending/message-sending';
 
 declare var google;
@@ -15,7 +15,7 @@ export class UserProfilePage {
     map: any;
 
     public id:string;
-    public profileData:any = { vailability:'', open:'', title:'', price_cents:'' };
+    public profileData:any = { vailability:'', open:'', title:'',description:'', price_cents:'' };
     public author:any = { family_name:'', given_name:'', id:'', image_file_name:''};
     public location:any = { address:'', latitude:'', longitude:''}
     public bg_img:string;
@@ -50,20 +50,21 @@ export class UserProfilePage {
     this.userService.getProfileData(this.id)
       .subscribe(
         (data) => {
+          loading.dismiss();
           if(data.success == false){
             console.log("No data");
          }else{
-           this.profileData = data;
+           this.profileData = data.listing;
            console.log(this.profileData);
-           this.author = data.author;
-           this.location = data.location;
+           this.author = data.listing.author;
+           this.location = data.listing.location;
 
-           if(data.listing_images.length > 0){
-             this.bg_img = 'https://swtch.cloud/system/images/'+ data.listing_images[0].id + '/big/' + data.listing_images[0].image_file_name;
+           if(this.profileData.listing_images.length > 0){
+             this.bg_img = 'https://swtch.cloud/system/images/'+ this.profileData.listing_images[0].id + '/big/' + this.profileData.listing_images[0].image_file_name;
            }else{
              this.bg_img = 'assets/image/4.jpg';
            }
-           loading.dismiss();
+
            this.loadMap(this.location.latitude, this.location.longitude);
            this.addMarker();
          }

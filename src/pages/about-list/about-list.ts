@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
 

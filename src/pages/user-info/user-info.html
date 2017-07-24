@@ -25,11 +25,12 @@
         <button ion-button outline middle class="contact_btn" (click)="sendMessagePage(name)">Contact {{userAuthor.given_name}}</button>
         <button ion-button outline middle class="contact_btn">Follow</button>
       </div>
-
     </div>
   </div>
 
-  <div class="box"></div>
+  <div *ngIf="!userAuthor.description" class="box"></div>
+
+  <div *ngIf="userAuthor.description" class="description">{{userAuthor.description}}</div>
 
   <div class="listing">
     <h2>1 opening listing</h2>
