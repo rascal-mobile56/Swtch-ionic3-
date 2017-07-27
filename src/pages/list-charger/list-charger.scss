@@ -63,27 +63,53 @@ page-list-charger {
       }
     }
     .schedule{
-      .available{
-        padding: 0;
 
-        .input-wrapper{
-          flex: 0;
+      .weekdays{
+        width: 100%;
+
+        .title{
+          width: 100%;
+          margin: 5px;
         }
-
-        .toggle{
-          padding: 0;
+        .day-check {
+          width: 100%;
+          display: flex;
+          .date{
+            width: 30%;
+            float: left;
+            background-color: transparent;
+            .date-toggle{
+              display: block;
+            }
+          }
+          .from-to{
+            width: 25%;
+            float: left;
+            .date-timer{
+              padding: 2px;
+              border: 1px solid black;
+              height: 30px;
+              font-size: 16px;
+              margin: 0 5px;
+            }
+          }
+          .add_delete{
+            width: 12%;
+            float: left;
+            .add{
+                height: 22px;
+                font-size: 20px;
+            }
+          }
         }
       }
+
       .text-input{
         height: 30px;
         border: 1px solid;
         padding: 3px;
         border-radius: 1px;
-        margin-top: 7px;
-      }
-      .add-more{
-        width: 100%;
-        height: 33px;
+        margin: 0 10px;
       }
     }
   }
@@ -93,6 +119,23 @@ page-list-charger {
       font-size: 16px;
       background-color: #a2a2a2;
       padding: 3px 10px;
+    }
+  }
+  .img_list{
+    width: 100%;
+    display: inline-flex;
+    .add_img{
+      border: 1px dashed black;
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      vertical-align: middle;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .fill_img{
+        width: 100%; 
+      }
     }
   }
 

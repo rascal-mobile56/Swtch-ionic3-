@@ -6,6 +6,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { NativeGeocoder} from '@ionic-native/native-geocoder';
 import { Geolocation} from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
+import { MomentModule } from 'angular2-moment';
 
 import { MyApp } from './app.component';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
@@ -39,6 +40,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserService } from '../services/user-service';
 import { BaseService } from "../services/base-service";
 import { AuthService } from '../services/auth.service';
+
+import { Camera } from '@ionic-native/camera';
+import { Crop } from '@ionic-native/crop';
 
 
 
@@ -76,6 +80,7 @@ import { AuthService } from '../services/auth.service';
     NgCalendarModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
+    MomentModule,
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
@@ -114,6 +119,8 @@ import { AuthService } from '../services/auth.service';
     AuthService,
     Geolocation,
     NativeGeocoder,
+    Camera,
+    Crop,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

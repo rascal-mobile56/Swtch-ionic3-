@@ -26,6 +26,7 @@ export class HomeTabPage {
     map: any;
     profiles:any=[];
     person:any;
+    accessToken:any;
     length:string;
     openState:string;
     currentLat:number;
@@ -46,7 +47,33 @@ export class HomeTabPage {
   ionViewWillEnter(){
     this.person = JSON.parse(window.localStorage.getItem('profile'));
     console.log(this.person);
-    this.getMainData();
+    this.accessToken = JSON.parse(window.localStorage.getItem('access_token'));
+    if(this.accessToken){
+      this.getCallbackData(this.accessToken);
+    }else{
+      this.getMainData();
+    }
+  }
+
+  getCallbackData(token){
+    let loading = this.loadingCtrl.create();
+    loading.present();
+    this.userService.callbackData(token)
+      .subscribe(
+        (data) => {
+          loading.dismiss();
+          if(data.success == false){
+            console.log("No data");
+            this.getMainData();
+         }else{
+           console.log(data);
+           window.localStorage.setItem('person_id', data.api.person_id);
+           this.getMainData();
+         }
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
   goListChargerPage(fab: FabContainer){
@@ -97,10 +124,10 @@ export class HomeTabPage {
            console.log(this.profiles);
            this.geolocationData();
          }
-        },
-        (error) => {
-          console.log(error);
-        });
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
   geolocationData(){
@@ -265,7 +292,7 @@ export class HomeTabPage {
       }else{
         this.openState = 'assets/icon/maker_close.png'
       }
-      console.log("latLng1", latLng);
+      // console.log("latLng1", latLng);
       let marker = new google.maps.Marker({
         map: this.map,
         animation: google.maps.Animation.DROP,

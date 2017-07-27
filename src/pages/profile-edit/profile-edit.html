@@ -7,27 +7,29 @@
 
 <ion-content class="custom-content" padding>
   <div class="person">
-    <img src="assets/image/avatar.png" alt="">
-    <button ion-button small>Edit</button>
+    <!-- <img *ngIf="!person.picture && !local_img" src="assets/image/avatar.png" alt=""> -->
+    <img *ngIf="profile" [src]="profile.picture" class="avatar-icon"/>
+    <img *ngIf="!profile" src="assets/image/avatar.png"/>
+    <button ion-button small (click)="profileImageSelect()">Edit</button>
   </div>
   <div class="">
     <ion-list>
       <ion-item class="text_input">
         <ion-label color="primary" stacked>First Name</ion-label>
-        <ion-input type="text" placeholder="First Name" class="txt"></ion-input>
+        <ion-input type="text" [(ngModel)]="person.family_name" placeholder="First Name"  class="txt"></ion-input>
       </ion-item>
 
       <ion-item class="text_input">
         <ion-label color="primary" stacked>Last Name</ion-label>
-        <ion-input type="text" placeholder="Last Name" class="txt"></ion-input>
+        <ion-input type="text" [(ngModel)]="person.given_name"  placeholder="Last Name" class="txt"></ion-input>
       </ion-item>
 
       <div class="address">
         <ion-item class="text_input">
           <ion-label color="primary" stacked>Location</ion-label>
-          <ion-input [(ngModel)] ="address" type="text" placeholder="Location" class="txt"></ion-input>
+          <ion-input [(ngModel)]="location.address" type="text" class="txt"></ion-input>
         </ion-item>
-        <button ion-button small (click)="searchAddress(address)"><ion-icon name="search"></ion-icon></button>
+        <button ion-button small (click)="searchAddress(location.address)"><ion-icon name="search"></ion-icon></button>
       </div>
 
 
@@ -37,14 +39,14 @@
 
       <ion-item class="text_input">
         <ion-label color="primary" stacked>Phone Number</ion-label>
-        <ion-input type="tel" placeholder="Phone Number" class="txt"></ion-input>
+        <ion-input type="tel" [(ngModel)]="person.phone_number"placeholder="Phone Number" class="txt"></ion-input>
       </ion-item>
 
       <ion-item class="text_input">
           <ion-label color="primary" stacked>About You</ion-label>
-          <ion-textarea class="textarea" name="comment" placeholder="About you"></ion-textarea>
+          <ion-textarea [(ngModel)] ="person.description" class="textarea" name="comment" placeholder="About you"></ion-textarea>
       </ion-item>
     </ion-list>
-    <button ion-button class="save">Save Information</button>
+    <button ion-button class="save" (click)="updatePersonData()">Save Information</button>
   </div>
 </ion-content>

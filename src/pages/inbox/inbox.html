@@ -9,32 +9,29 @@
 </ion-header>
 
 <ion-content class="custom-content">
-  <ion-card *ngFor="let item of items" >
-    <ion-item>
-        <ion-avatar item-start class="avatar">
-          <img src="{{item.avatar}}">
-        </ion-avatar>
-        <h2>{{item.name}}</h2>
-        <p>{{item.rate}}</p>
-      </ion-item>
-      <ion-card-content class="card-content">
-        <p>{{item.comments}}</p>
-      </ion-card-content>
+    <ion-card *ngFor="let item of inboxData" >
+        <ion-item>
+          <ion-avatar item-start class="avatar">
+            <img src="https://swtch.cloud{{item.author.avatar}}">
+          </ion-avatar>
+          <h2>{{item.author.first_name}} {{item.author.last_name}}</h2>
+          <p>{{item.last_message_at | amTimeAgo}}</p>
+        </ion-item>
+        <ion-card-content class="card-content">
+          <p>{{item.last_message_content}}</p>
+        </ion-card-content>
 
-      <ion-row>
-        <ion-col>
-          <button ion-button icon-left clear small color="dark">
-            <div>About listing</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left clear small>
-            <div>{{item.username}}</div>
-          </button>
-        </ion-col>
-        <ion-col center text-center>
-          <ion-note>{{item.timeout}}</ion-note>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left clear small color="dark">
+              <div>About listing</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear small>
+              <div>{{item.listing_title}}</div>
+            </button>
+          </ion-col>
+        </ion-row>
     </ion-card>
 </ion-content>

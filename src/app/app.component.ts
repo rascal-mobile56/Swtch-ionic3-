@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
 import { ListChargerPage } from '../pages/list-charger/list-charger';
+import { ProfileEditPage } from '../pages/profile-edit/profile-edit'
 import Auth0Cordova from '@auth0/cordova';
 
 @Component({

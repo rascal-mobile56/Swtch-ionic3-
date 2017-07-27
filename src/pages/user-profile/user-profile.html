@@ -19,7 +19,7 @@
 <ion-content class="custom-content">
   <div class="user_title">{{profileData.title}}</div>
   <div class="background">
-    <img class="bg_img" src="{{bg_img}}" alt="no image">
+    <img class="bg_img" src="{{bg_img}}" alt="">
     <img *ngIf="author.image_file_name" class="profile_img" src="https://swtch.cloud/system/images/{{author.id}}/small/{{author.image_file_name}}" alt="no background">
     <img *ngIf="!author.image_file_name" class="profile_img" src="assets/image/avatar.png" alt="no background">
     <div class="name">
@@ -92,7 +92,7 @@
 
   <ion-item-group class="group">
      <ion-item-divider color="light" sticky>
-       <div class="section-header"><p>Time slots available for service(15minute intervals)</p></div>
+       <div class="section-header"><p style="font-size: 15px;">Time slots available for service(15minute intervals)</p></div>
        <div class="updated-date">2017.07.10</div>
      </ion-item-divider>
    <div class="detail">

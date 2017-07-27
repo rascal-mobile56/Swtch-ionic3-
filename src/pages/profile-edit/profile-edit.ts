@@ -1,7 +1,11 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ActionSheetController, LoadingController } from 'ionic-angular';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Crop } from '@ionic-native/crop';
+
+import { UserService } from '../../services/user-service';
 
 declare var google;
 
@@ -12,29 +16,111 @@ declare var google;
 export class ProfileEditPage {
 
   @ViewChild('map') mapElement: ElementRef;
-  
+
     map: any;
 
     lat:string;
     lng:string;
     currentLat:number;
     currentLng:number;
-    address:string = '';
+    profile:any;
+    authResult:any;
+    person_id:any;
+    person:any = { family_name: '', given_name:'',image:'',phone_number: '',  description:'' };
+    location:any = { address:'', google_address: '', latitude: '', longitude:''};
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public  alertCtrl: AlertController,
+    public actionSheetCtrl: ActionSheetController,
+    public loadingCtrl: LoadingController,
     private nativeGeocoder: NativeGeocoder,
     private geolocation: Geolocation,
-
+    private camera: Camera,
+    private crop: Crop,
+    public userService: UserService,
   ) {
-    this.address = navParams.get("address");
+    this.profile = JSON.parse(window.localStorage.getItem('profile'));
+    console.log(this.profile);
   }
-  ionViewDidLoad(){
-    if(this.address){
-      this.searchAddress(this.address);
-    }else{
+
+  ngOnInit(){
+    this.person_id = window.localStorage.getItem('person_id');
+    // this.person_id= "ckozv7euc19VGaVdnBobbQ";
+    console.log(this.person_id);
+    this.getPersonData(this.person_id);
+  }
+
+  getPersonData(id){
+    let loading = this.loadingCtrl.create();
+    loading.present();
+
+    this.userService.getPersonData(id)
+      .subscribe(
+        (data) => {
+          loading.dismiss();
+          if(data.success == false){
+            console.log("No data");
+            this.locationData(false);
+         }else{
+           console.log(data);
+           this.person = data;
+           if(!data.location){
+             this.locationData(true);
+           } else{
+             this.location = data.location;
+             this.locationData(false);
+           }
+         }
+      },
+      (error) => {
+        console.log(error);
+      });
+  }
+
+  updatePersonData(){
+    // let body = family_name: this.person.family_name, given_name: this.person.given_name,
+    // location:{ address: this.location.address,google_address:this.location.address, latitude: this.lat, longitude: this.lng},
+    // phone_number: this.person.phone_number,  description:this.person.description };
+    // console.log(body);
+    let body = '&person[family_name]='+ this.person.family_name
+    + '&person[given_name]='+ this.person.given_name
+    + '&person[description]=' + this.person.description
+    + '&person[phone_number]='+ this.person.phone_number
+    + '&person[location[address]]=' + this.location.address
+    + '&person[location[google_address]]=' + this.location.address
+    + '&person[location[latitude]]=' + this.lat +
+    '&person[location[longitude]]=' + this.lng;
+      console.log(body);
+    // person[given_name]=Evan&person[family_name]=Shabsove&person[street_address]=40Fernwood&person[phone_number]=4169999999&person[description]=ThisIsAPI&
+    // person[location[address]]=Tokyo&person[location[google_address]]=Tokyo&person[location[latitude]]=39.000&person[location[longitude]]=139.0000
+
+    let loading = this.loadingCtrl.create();
+    loading.present();
+
+    this.userService.updatePersonData(this.person_id, body)
+      .subscribe(
+        (data) => {
+          loading.dismiss();
+          if(data.success == false){
+            console.log("No data");
+            // this.locationData(false);
+         }else{
+           console.log(data);
+         }
+      },
+      (error) => {
+        console.log(error);
+      });
+
+  }
+
+  locationData(flag){
+    if(flag){
       this.geolocationData();
+    }else{
+      this.searchAddress(this.location.address);
     }
   }
 
@@ -52,6 +138,7 @@ export class ProfileEditPage {
   }
 
   searchAddress(address){
+    console.log(address);
     this.nativeGeocoder.forwardGeocode(address)
       .then((coordinates: NativeGeocoderForwardResult) => this.LatLng(coordinates.latitude, coordinates.longitude))
       .catch((error: any) => this.undefinedAddress());
@@ -93,6 +180,69 @@ export class ProfileEditPage {
       position: this.map.getCenter()
     });
   }
+
+
+
+   profileImageSelect() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Modify your album',
+      buttons: [
+        {
+          text: 'Camera',
+          handler: () => {
+            let options:CameraOptions = {
+              destinationType: this.camera.DestinationType.FILE_URI,
+              encodingType: this.camera.EncodingType.JPEG,
+              sourceType: this.camera.PictureSourceType.CAMERA,
+            }
+            this.camera.getPicture(options).then((imageData) => {
+              // let base64Image = 'data:image/jpeg;base64,' + imageData;
+              // this.profile.picture = imageData;
+              // console.log(imageData);
+              this.crop.crop(imageData, {quality: 75})
+                .then(newImage => {
+                  this.profile.picture = newImage;
+                },
+                  error => console.error('Error cropping image', error)
+                );
+
+            }, (err) => {
+              alert(JSON.stringify(err))
+            });
+          }
+        },{
+          text: 'Photo Library',
+          handler: () => {
+            let options:CameraOptions = {
+                 quality: 100,
+                 destinationType: this.camera.DestinationType.DATA_URL,
+                 encodingType: this.camera.EncodingType.JPEG,
+                 mediaType: this.camera.MediaType.PICTURE,
+                 sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                 targetWidth: 100,
+                 targetHeight: 100
+               }
+              this.camera.getPicture(options).then((imageData) => {
+                // imageData is either a base64 encoded string or a file URI
+                // If it's base64:
+                let base64Image = 'data:image/jpeg;base64,' + imageData;
+                this.profile.picture = base64Image;
+                console.log(base64Image);
+               }, (err) => {
+                // Handle error
+               });
+             }
+          },{
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      actionSheet.present();
+    }
 
   backPage(){
     this.navCtrl.pop();

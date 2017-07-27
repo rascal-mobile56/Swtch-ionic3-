@@ -65,7 +65,7 @@ export class AuthService {
         throw err;
       }
 
-      console.log('authResult', authResult);
+      console.log('authResult', JSON.stringify(authResult));
       this.setStorageVariable('authResult', authResult);
       this.setIdToken(authResult.idToken);
       this.setAccessToken(authResult.accessToken);
@@ -82,7 +82,7 @@ export class AuthService {
         this.setStorageVariable('profile', profile);
         this.zone.run(() => {
           this.user = profile;
-          console.log('profile',profile);
+          console.log('profile',JSON.stringify(profile));
         });
       });
     });

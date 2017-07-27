@@ -11,26 +11,57 @@
 <ion-content class="custom-content">
   <ion-item class="text_input">
     <ion-label color="primary" stacked>Marker</ion-label>
-    <ion-input type="text" placeholder="Maker" class="txt"></ion-input>
+    <ion-input [(ngModel)]="carDetails.maker" type="text" placeholder="Maker" class="txt"></ion-input>
   </ion-item>
 
   <ion-item class="text_input">
     <ion-label color="primary" stacked>Year</ion-label>
-    <ion-input type="number" placeholder="Last Name" class="txt"></ion-input>
+    <ion-input [(ngModel)]="carDetails.year" type="number" placeholder="Last Name" class="txt"></ion-input>
   </ion-item>
 
   <ion-item class="text_input">
     <ion-label color="primary" stacked>Model</ion-label>
-    <ion-input type="text" placeholder="Model" class="txt"></ion-input>
+    <ion-input [(ngModel)]="carDetails.model" type="text" placeholder="Model" class="txt"></ion-input>
   </ion-item>
 
   <ion-item class="text_input">
     <ion-label color="primary" stacked>Color</ion-label>
-    <ion-input type="text" placeholder="Color" class="txt"></ion-input>
+    <ion-input [(ngModel)]="carDetails.colour" type="text" placeholder="Color" class="txt"></ion-input>
   </ion-item>
 
   <ion-item class="text_input">
     <ion-label color="primary" stacked>License Plate Number</ion-label>
-    <ion-input type="number" placeholder="License Plate Number" class="txt"></ion-input>
+    <ion-input [(ngModel)]="carDetails.license_plate_number" type="number" placeholder="License Plate Number" class="txt"></ion-input>
   </ion-item>
+
+  <button ion-button class="save" (click)="updateCarDetails()">Save Car Details</button>
 </ion-content>
+
+<!-- <ion-card *ngFor="let item of items" >
+    <ion-item>
+      <ion-avatar item-start class="avatar">
+        <img src="{{item.avatar}}">
+      </ion-avatar>
+      <h2>{{item.author.first_name}} {{item.author.last_name}}</h2>
+      <p>{{item.author.username}}</p>
+    </ion-item>
+    <ion-card-content class="card-content">
+      <p>{{item.last_message_content}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small color="dark">
+          <div>About listing</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <div>{{item.listing_title}}</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>{{item.last_message_at}}</ion-note>
+      </ion-col>
+    </ion-row>
+</ion-card> -->
