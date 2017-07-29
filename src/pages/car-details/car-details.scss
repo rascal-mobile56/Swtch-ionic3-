@@ -3,11 +3,16 @@ page-car-details {
   .text_input{
     border: none !important;
     margin-top: 10px;
-    
+
     .txt{
       border: 1px solid;
       border-radius: 3px;
       padding: 0 5px;
     }
+  }
+  .save{
+    width: calc(100% - 23px);
+    left: 14px;
+    margin: 30px 0;
   }
 }

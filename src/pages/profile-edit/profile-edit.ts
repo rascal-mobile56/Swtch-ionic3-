@@ -80,21 +80,15 @@ export class ProfileEditPage {
   }
 
   updatePersonData(){
-    // let body = family_name: this.person.family_name, given_name: this.person.given_name,
-    // location:{ address: this.location.address,google_address:this.location.address, latitude: this.lat, longitude: this.lng},
-    // phone_number: this.person.phone_number,  description:this.person.description };
-    // console.log(body);
     let body = '&person[family_name]='+ this.person.family_name
     + '&person[given_name]='+ this.person.given_name
     + '&person[description]=' + this.person.description
     + '&person[phone_number]='+ this.person.phone_number
     + '&person[location[address]]=' + this.location.address
     + '&person[location[google_address]]=' + this.location.address
-    + '&person[location[latitude]]=' + this.lat +
-    '&person[location[longitude]]=' + this.lng;
+    + '&person[location[latitude]]=' + this.lat.toString() +
+    '&person[location[longitude]]=' + this.lng.toString();
       console.log(body);
-    // person[given_name]=Evan&person[family_name]=Shabsove&person[street_address]=40Fernwood&person[phone_number]=4169999999&person[description]=ThisIsAPI&
-    // person[location[address]]=Tokyo&person[location[google_address]]=Tokyo&person[location[latitude]]=39.000&person[location[longitude]]=139.0000
 
     let loading = this.loadingCtrl.create();
     loading.present();
@@ -113,7 +107,6 @@ export class ProfileEditPage {
       (error) => {
         console.log(error);
       });
-
   }
 
   locationData(flag){
@@ -191,6 +184,7 @@ export class ProfileEditPage {
           text: 'Camera',
           handler: () => {
             let options:CameraOptions = {
+              quality: 100,
               destinationType: this.camera.DestinationType.FILE_URI,
               encodingType: this.camera.EncodingType.JPEG,
               sourceType: this.camera.PictureSourceType.CAMERA,
@@ -202,10 +196,8 @@ export class ProfileEditPage {
               this.crop.crop(imageData, {quality: 75})
                 .then(newImage => {
                   this.profile.picture = newImage;
-                },
-                  error => console.error('Error cropping image', error)
-                );
-
+                },error => console.error('Error cropping image', error)
+              );
             }, (err) => {
               alert(JSON.stringify(err))
             });
@@ -214,22 +206,25 @@ export class ProfileEditPage {
           text: 'Photo Library',
           handler: () => {
             let options:CameraOptions = {
-                 quality: 100,
-                 destinationType: this.camera.DestinationType.DATA_URL,
+                quality: 100,
+                 destinationType: this.camera.DestinationType.FILE_URI,
                  encodingType: this.camera.EncodingType.JPEG,
                  mediaType: this.camera.MediaType.PICTURE,
                  sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-                 targetWidth: 100,
-                 targetHeight: 100
                }
               this.camera.getPicture(options).then((imageData) => {
-                // imageData is either a base64 encoded string or a file URI
-                // If it's base64:
-                let base64Image = 'data:image/jpeg;base64,' + imageData;
-                this.profile.picture = base64Image;
-                console.log(base64Image);
+
+                console.log(imageData);
+                this.crop.crop(imageData, {quality: 75})
+                .then(newImage => {
+                  this.profile.picture = newImage;
+                  let base64Image = 'data:image/jpeg;base64,' + newImage;
+
+                  console.log(base64Image);
+                },error=>console.error('Error cropping image', JSON.stringify(error))
+                );
                }, (err) => {
-                // Handle error
+                alert(JSON.stringify(err))
                });
              }
           },{

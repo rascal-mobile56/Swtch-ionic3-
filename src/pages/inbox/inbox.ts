@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController,  } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { UserService } from '../../services/user-service';
+import { InboxReplyPage } from '../inbox-reply/inbox-reply'
 
 @Component({
   selector: 'page-inbox',
@@ -15,6 +16,7 @@ items: Array<{avatar: string, name: string, rate:string, comments:string, userna
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController,
     public userService: UserService,
 
   ) {
@@ -32,6 +34,7 @@ items: Array<{avatar: string, name: string, rate:string, comments:string, userna
 
   ngOnInit(){
     this.person_id = window.localStorage.getItem('person_id');
+    this.person_id = 'F2z8qVPuveLvUgsIJN1wXw';
     this.getInboxData(this.person_id);
   }
 
@@ -54,9 +57,13 @@ items: Array<{avatar: string, name: string, rate:string, comments:string, userna
       (error) => {
         console.log(error);
       });
-
   }
 
+  goInboxReplyPage(val){
+    console.log('go UserProfile Page');
+    let profileModal = this.modalCtrl.create( InboxReplyPage );
+    profileModal.present();
+  };
 
 
 }

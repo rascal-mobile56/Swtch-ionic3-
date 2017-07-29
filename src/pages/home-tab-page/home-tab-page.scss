@@ -6,6 +6,47 @@
       #map {
         width: 100%;
         height: 100%;
+        .gmnoprint{
+          .gm-style-mtc, .gm-svpc{
+            display: none;
+          }
+        }
+        .gm-fullscreen-control{
+          display: none;
+        }
+      }
+
+      .address{
+
+        position: absolute;
+        z-index: 9;
+        width: calc(100% - 90px);
+        left: 0;
+        margin-top: 6px;
+
+        .text_input{
+          width: calc(100% - 45px);
+          float: left;
+          background: transparent;
+          padding-left: 10px;
+          .txt{
+            input{
+              border: 1px solid black;
+              height: 34px;
+              margin: 5px 0;
+              border-radius: 3px;
+              padding: 3px 10px;
+              background: #ffffff;
+              opacity: 0.9;
+            }
+          }
+        }
+        button{
+          width: 35px;
+          float: left;
+          height: 35px;
+          font-size: 17px;
+        }
       }
       .background{
         width: auto;

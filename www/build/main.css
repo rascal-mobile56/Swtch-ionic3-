@@ -25224,7 +25224,7 @@ ion-navbar.toolbar {
 }
 
 .toolbar {
-  border-bottom: 1px solid #008ecf;
+  border-bottom: 1px solid gray;
 }
 
 .header-icon {
@@ -25309,6 +25309,7 @@ ion-navbar.toolbar {
 .fab-nav {
   bottom: 85px;
   right: 0px;
+  width: 60px;
 }
 
 .fab-nav .fab-in-list {
@@ -25482,6 +25483,12 @@ page-car-details .text_input .txt {
   padding: 0 5px;
 }
 
+page-car-details .save {
+  width: calc(100% - 23px);
+  left: 14px;
+  margin: 30px 0;
+}
+
 page-contact-tab .scroll-content {
   padding: 0;
 }
@@ -25490,8 +25497,7 @@ page-contact-tab .contact {
   width: 27vw;
   margin: 0 auto;
   display: block;
-  margin-top: -14vw;
-  border-radius: 50%;
+  margin-top: -9vw;
 }
 
 page-contact-team .textbox {
@@ -25542,6 +25548,46 @@ page-email-add .save {
 .ios page-home-tab #map, .md page-home-tab #map {
   width: 100%;
   height: 100%;
+}
+
+.ios page-home-tab #map .gmnoprint .gm-style-mtc, .ios page-home-tab #map .gmnoprint .gm-svpc, .md page-home-tab #map .gmnoprint .gm-style-mtc, .md page-home-tab #map .gmnoprint .gm-svpc {
+  display: none;
+}
+
+.ios page-home-tab #map .gm-fullscreen-control, .md page-home-tab #map .gm-fullscreen-control {
+  display: none;
+}
+
+.ios page-home-tab .address, .md page-home-tab .address {
+  position: absolute;
+  z-index: 9;
+  width: calc(100% - 90px);
+  left: 0;
+  margin-top: 6px;
+}
+
+.ios page-home-tab .address .text_input, .md page-home-tab .address .text_input {
+  width: calc(100% - 45px);
+  float: left;
+  background: transparent;
+  padding-left: 10px;
+}
+
+.ios page-home-tab .address .text_input .txt input, .md page-home-tab .address .text_input .txt input {
+  border: 1px solid black;
+  height: 34px;
+  margin: 5px 0;
+  border-radius: 3px;
+  padding: 3px 10px;
+  background: #ffffff;
+  opacity: 0.9;
+}
+
+.ios page-home-tab .address button, .md page-home-tab .address button {
+  width: 35px;
+  float: left;
+  height: 35px;
+  font-size: 17px;
 }
 
 .ios page-home-tab .background, .md page-home-tab .background {
@@ -25613,6 +25659,87 @@ page-inbox .avatar img {
   border-radius: 5px;
 }
 
+page-inbox-reply .md .kkk {
+  width: 100%;
+}
+
+page-inbox-reply .md .kkk .toolbar-content-md {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+page-inbox-reply .md .kkk .header-icon {
+  height: 15px;
+}
+
+page-inbox-reply .title {
+  padding: 30px 0;
+  text-align: center;
+}
+
+page-inbox-reply .text_input {
+  padding-left: 0px;
+  margin-top: 30px;
+}
+
+page-inbox-reply .text_input .item-inner {
+  padding: 0 !important;
+}
+
+page-inbox-reply .text_input .label {
+  font-size: 14px;
+}
+
+page-inbox-reply .text_input .textarea {
+  border: 1px solid;
+  padding: 5px;
+  height: 100px;
+  border-radius: 2px;
+}
+
+page-inbox-reply .text_input .textarea .text-input {
+  height: 100%;
+}
+
+page-inbox-reply .reply_msg {
+  width: 100%;
+  margin: 1.4rem 0;
+}
+
+page-inbox-reply .details {
+  width: 100%;
+  display: blick;
+}
+
+page-inbox-reply .details img {
+  width: 60px;
+  border: 1px solid blue;
+  border-radius: 5px;
+}
+
+page-inbox-reply .message-box .message-left {
+  position: relative;
+  min-height: 3em;
+  border-radius: 5px;
+  padding-left: 5px;
+  background: #e8e8e8;
+}
+
+page-inbox-reply .message-box .message-left:after {
+  right: 100%;
+  border-right-color: #e8e8e8;
+  margin-top: -0.375em;
+  top: 1.5em;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-width: 0.375em;
+}
+
 page-invite-friend .textbox {
   padding: 0px;
 }
@@ -25641,8 +25768,7 @@ page-invite-tab .invite {
   width: 27vw;
   margin: 0 auto;
   display: block;
-  margin-top: -14vw;
-  border-radius: 50%;
+  margin-top: -9vw;
 }
 
 page-list-charger .text_input {

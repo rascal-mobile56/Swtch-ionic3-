@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
-import { NavController, ModalController, LoadingController, FabContainer } from 'ionic-angular';
+import { NavController, ModalController, AlertController, LoadingController, FabContainer } from 'ionic-angular';
 import { UserInfoPage } from '../user-info/user-info';
 import { UserProfilePage } from '../user-profile/user-profile';
 
@@ -12,6 +12,7 @@ import { ListChargerPage } from '../list-charger/list-charger';
 
 import { UserService } from '../../services/user-service';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 
 
 declare var google;
@@ -31,13 +32,18 @@ export class HomeTabPage {
     openState:string;
     currentLat:number;
     currentLng:number;
-
+    lat:string;
+    lng:string;
+    address:string;
+    current_marker:any;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
+    public  alertCtrl: AlertController,
     public modalCtrl: ModalController,
     public userService: UserService,
     private geolocation: Geolocation,
+    private nativeGeocoder: NativeGeocoder,
   ) {
 
     // this.person = JSON.parse(window.localStorage.getItem('profile'));
@@ -45,6 +51,7 @@ export class HomeTabPage {
     }
 
   ionViewWillEnter(){
+
     this.person = JSON.parse(window.localStorage.getItem('profile'));
     console.log(this.person);
     this.accessToken = JSON.parse(window.localStorage.getItem('access_token'));
@@ -76,19 +83,16 @@ export class HomeTabPage {
       });
   }
 
-  goListChargerPage(fab: FabContainer){
-    console.log('goListChargerPage');
-    if (fab !== undefined) {
-      fab.close();
-    }
+  close(fab: FabContainer) {
+   fab.close ();
+   console.log ( "Sharing in");
+ }
+
+  goListChargerPage(){
     this.navCtrl.push(ListChargerPage);
   }
 
-  goSignPage(fab: FabContainer){
-    console.log('goSignPage');
-    if (fab !== undefined) {
-      fab.close();
-    }
+  goSignPage(){
     this.navCtrl.push(SignPage);
   }
   goSettingPage(){
@@ -141,6 +145,29 @@ export class HomeTabPage {
     }).catch((error) => {
         console.log('Error getting location', error);
     });
+  }
+
+  searchAddress(address){
+    console.log(address);
+    this.nativeGeocoder.forwardGeocode(address)
+      .then((coordinates: NativeGeocoderForwardResult) => this.LatLng(coordinates.latitude, coordinates.longitude))
+      .catch((error: any) => this.undefinedAddress());
+  }
+
+  undefinedAddress(){
+    let alert = this.alertCtrl.create({
+      title: 'Undefined Address!',
+      subTitle: 'Your address is incorrect!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  LatLng(latitude, longitude){
+    console.log('The coordinates are latitude=' + latitude + ' and longitude=' + longitude);
+    this.lat = latitude;
+    this.lng = longitude;
+    this.loadMap(this.lat, this.lng);
   }
 
   loadMap(currentLat, currentLng) {
@@ -316,7 +343,7 @@ export class HomeTabPage {
           bg_img = 'https://swtch.cloud/system/images/'+ this.profiles[i].listing_images[0].id +'/small_3x2/' + this.profiles[i].listing_images[0].image_file_name;
       } else{
 
-        bg_img = 'assets/image/bg_small.png';
+        bg_img = 'assets/image/blank.png';
       }
 
       let profile_img;
@@ -350,7 +377,12 @@ export class HomeTabPage {
     });
 
     google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
+      //   console.log('maker click' + infoWindow);
+      //   if (infoWindow && this.current_marker!=null) {
+      //    infoWindow.close(this.map, this.current_marker);
+      //  }
+       infoWindow.open(this.map, marker);
+      //  this.current_marker = marker;
       setTimeout(() => { infoWindow.close(this.map, marker); }, 4000);
     });
 
@@ -363,11 +395,13 @@ export class HomeTabPage {
       });
     });
   }
+
   goUserProfileModal(val){
     console.log('go UserProfile Page');
     let profileModal = this.modalCtrl.create(UserProfilePage, { id: val });
     profileModal.present();
   };
+
   goUserInfoPage(val){
     console.log('go UserInformation Page');
     let profileModal = this.modalCtrl.create(UserInfoPage, { id: val });

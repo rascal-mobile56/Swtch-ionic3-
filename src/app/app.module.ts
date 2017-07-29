@@ -20,6 +20,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { EmailAddPage } from '../pages/email-add/email-add';
 import { InboxPage } from '../pages/inbox/inbox';
+import { InboxReplyPage } from '../pages/inbox-reply/inbox-reply'
 import { MessagesSendingPage } from '../pages/message-sending/message-sending'
 import { InviteFriendPage } from '../pages/invite-friend/invite-friend';
 import { ContactTeamPage } from '../pages/contact-team/contact-team'
@@ -60,6 +61,7 @@ import { Crop } from '@ionic-native/crop';
     ProfileEditPage,
     EmailAddPage,
     InboxPage,
+    InboxReplyPage,
     MessagesSendingPage,
     InviteFriendPage,
     ContactTeamPage,
@@ -97,6 +99,7 @@ import { Crop } from '@ionic-native/crop';
     ProfileEditPage,
     EmailAddPage,
     InboxPage,
+    InboxReplyPage,
     MessagesSendingPage,
     InviteFriendPage,
     ContactTeamPage,

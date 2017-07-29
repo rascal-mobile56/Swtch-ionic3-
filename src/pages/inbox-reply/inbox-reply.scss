@@ -1,0 +1,81 @@
+page-inbox-reply {
+
+  .md
+  {
+    .kkk{
+      width: 100%;
+      .toolbar-content-md{
+          position: absolute;
+          width: 100%;
+          left: 0;
+      }
+      .header-icon{
+        height: 15px;
+      }
+    }
+  }
+  .title{
+    padding: 30px 0;
+    text-align: center;
+  }
+  .text_input{
+    padding-left: 0px;
+    margin-top: 30px;
+
+    .item-inner{
+      padding: 0 !important;
+    }
+    .label{
+      font-size: 14px;
+    }
+    .textarea{
+        border: 1px solid;
+        padding: 5px;
+        height: 100px;
+        border-radius: 2px;
+
+        .text-input{
+          height: 100%;
+        }
+      }
+  }
+  .reply_msg{
+    width: 100%;
+    margin: 1.4rem 0;
+  }
+  .details{
+    width: 100%;
+    display: blick;
+    img{
+      width: 60px;
+      border: 1px solid blue;
+      border-radius: 5px;
+    }
+  }
+
+.message-box{
+  .message-left{
+    position: relative;
+    min-height: 3em;
+    border-radius: 5px;
+    padding-left: 5px;
+    background: #e8e8e8;
+  }
+  .message-left:after{
+    right:100%;
+    border-right-color: #e8e8e8;
+    margin-top: -0.375em;
+    top: 1.5em;
+    border: solid transparent;
+    content:" ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: 0.375em;
+
+  }
+}
+
+
+}

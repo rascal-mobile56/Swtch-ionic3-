@@ -8,6 +8,8 @@ import { ListChargerPage } from '../pages/list-charger/list-charger';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit'
 import Auth0Cordova from '@auth0/cordova';
 
+import { InboxReplyPage } from '../pages/inbox-reply/inbox-reply'
+
 @Component({
   templateUrl: 'app.html'
 })

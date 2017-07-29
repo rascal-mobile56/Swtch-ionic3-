@@ -2,7 +2,7 @@
 
 <ion-header>
   <ion-navbar>
-    <img *ngIf="!person" src="assets/image/avatar.png" alt="" class="header_img">
+    <!-- <img *ngIf="!person" src="assets/image/avatar.png" alt="" class="header_img"> -->
     <img *ngIf="person" src="{{person.picture}}" alt="" class="header_img">
     <ion-title>Contact SWTCH Team</ion-title>
   </ion-navbar>
@@ -10,9 +10,9 @@
 
 <ion-content class="custom-content" padding>
 
-    <img src="assets/image/5.jpg">
-    <img class="contact" src="assets/image/chain.png">
-    <h4 style="text-align:center;">Please Contact with Swtch</h4>
-    <button ion-button style="width: 100%;" (click)="goContactTeamPage()">Contact Swtch</button>
+    <img src="assets/image/bg_contact.jpg" style="width: 100%;">
+    <img class="contact" src="assets/image/invite_log.png">
+    <h4 style="text-align:center;">Please Contact with SWTCH</h4>
+    <button ion-button style="width: 100%; margin-top: 6vh;" (click)="goContactTeamPage()">Contact Swtch</button>
 
 </ion-content>

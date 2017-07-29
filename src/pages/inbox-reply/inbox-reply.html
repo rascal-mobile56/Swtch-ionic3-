@@ -1,0 +1,34 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button clear class="header-icon" (click)="dismiss()" left>
+      <ion-icon name="md-arrow-back"></ion-icon>
+    </button>
+    <ion-title>Conversation with </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="title">SWTCH Test Charger</h2>
+  <div class="">
+    <ion-item class="text_input">
+        <ion-label color="primary" stacked>About You</ion-label>
+        <ion-textarea class="textarea" name="comment" placeholder="About you"></ion-textarea>
+    </ion-item>
+    <button ion-button class="reply_msg" (click)="replyMessage()">Send Reply</button>
+  </div>
+  <div class="details">
+    <img src="assets/image/avatar.png" alt="">
+    <div class="message-box">
+      <p>KenjiKkk OyamaKk <span>1 hour ago</span></p>
+      <div class="message-left">
+        <p>Thank you for your reply
+          <br>Please send me reply messsage
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+
+</ion-content>

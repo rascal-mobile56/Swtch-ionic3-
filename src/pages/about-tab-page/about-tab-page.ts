@@ -15,7 +15,7 @@ export class AboutTabPage {
     this.pages = [
       { title: 'About', url: 'assets/About.html', icon: 'ios-information-circle-outline'},
       { title: 'How it works', url: 'assets/HowItWorks.html', icon: 'ios-paper-outline'},
-      { title: 'Privicy', url: 'assets/Privacy.html', icon: 'ios-lock-outline' },
+      { title: 'Privacy', url: 'assets/Privacy.html', icon: 'ios-lock-outline' },
       { title: 'Terms of Use', url: 'assets/TermsOfUse.html', icon: 'ios-copy-outline' },
     ];
   }

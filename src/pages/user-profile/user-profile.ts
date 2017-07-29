@@ -171,6 +171,7 @@ export class UserProfilePage {
       position: this.map.getCenter()
     });
   }
+  
   dismiss() {
     this.viewCtrl.dismiss();
   }
