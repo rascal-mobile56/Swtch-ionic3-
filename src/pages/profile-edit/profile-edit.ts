@@ -4,8 +4,11 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Crop } from '@ionic-native/crop';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 import { UserService } from '../../services/user-service';
+import { BaseService } from "../../services/base-service";
 
 declare var google;
 
@@ -28,6 +31,7 @@ export class ProfileEditPage {
     person_id:any;
     person:any = { family_name: '', given_name:'',image:'',phone_number: '',  description:'' };
     location:any = { address:'', google_address: '', latitude: '', longitude:''};
+    imagePath:any;
 
   constructor(
     public navCtrl: NavController,
@@ -39,7 +43,10 @@ export class ProfileEditPage {
     private geolocation: Geolocation,
     private camera: Camera,
     private crop: Crop,
+    private transfer: FileTransfer,
+    private file: File,
     public userService: UserService,
+    public baseService: BaseService,
   ) {
     this.profile = JSON.parse(window.localStorage.getItem('profile'));
     console.log(this.profile);
@@ -190,12 +197,15 @@ export class ProfileEditPage {
               sourceType: this.camera.PictureSourceType.CAMERA,
             }
             this.camera.getPicture(options).then((imageData) => {
-              // let base64Image = 'data:image/jpeg;base64,' + imageData;
-              // this.profile.picture = imageData;
-              // console.log(imageData);
               this.crop.crop(imageData, {quality: 75})
                 .then(newImage => {
-                  this.profile.picture = newImage;
+
+                  var sourceDirectory = newImage.substring(0, newImage.lastIndexOf('/') + 1);
+                  var sourceFileName = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.length);
+                  sourceFileName = sourceFileName.split('?').shift();
+
+                  this.imagePath = newImage;
+                  this.updatePhoto();
                 },error => console.error('Error cropping image', error)
               );
             }, (err) => {
@@ -217,10 +227,16 @@ export class ProfileEditPage {
                 console.log(imageData);
                 this.crop.crop(imageData, {quality: 75})
                 .then(newImage => {
-                  this.profile.picture = newImage;
+
+                  var sourceDirectory = newImage.substring(0, newImage.lastIndexOf('/') + 1);
+                  var sourceFileName = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.length);
+                  sourceFileName = sourceFileName.split('?').shift();
+
+                  this.imagePath = newImage;
                   let base64Image = 'data:image/jpeg;base64,' + newImage;
 
                   console.log(base64Image);
+                  this.updatePhoto();
                 },error=>console.error('Error cropping image', JSON.stringify(error))
                 );
                }, (err) => {
@@ -238,6 +254,46 @@ export class ProfileEditPage {
       });
       actionSheet.present();
     }
+
+    updatePhoto(){
+      let loading = this.loadingCtrl.create();
+      loading.present();
+
+      if (this.imagePath){
+
+        let filename = this.imagePath.split('/').pop();
+        let options = {
+          fileKey: "person[image]",
+          fileName: filename,
+          chunkedMode: false,
+          httpMethod: "PATCH",
+          mimeType: "image/jpg",
+
+        };
+
+        const fileTransfer: FileTransferObject = this.transfer.create();
+
+        fileTransfer.upload(this.imagePath, this.baseService.peopleUrl + "/" + this.person_id,
+          options).then((entry) => {
+            console.log("url: " + this.baseService.peopleUrl + "/" + this.person_id);
+            if (JSON.stringify(entry).indexOf("error_code") == -1){
+              this.profile.picture = this.imagePath;
+              this.imagePath = '';
+              loading.dismiss();
+              // this.flagService.setChangedFlag(true);
+            }
+            else{
+              loading.dismiss();
+              console.log("success:" + JSON.stringify(entry));
+            }
+
+          }, (err) => {
+            loading.dismiss();
+            console.log("failed:" + JSON.stringify(err));
+          });
+      }
+    }
+
 
   backPage(){
     this.navCtrl.pop();

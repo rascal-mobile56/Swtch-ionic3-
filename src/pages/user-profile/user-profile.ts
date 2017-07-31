@@ -20,12 +20,14 @@ export class UserProfilePage {
     public location:any = { address:'', latitude:'', longitude:''}
     public bg_img:string;
     eventSource;
+    weekly_schedules: any;
     viewTitle;
     isToday: boolean;
     calendar = {
-        mode: 'month',
+        mode: 'day',
         currentDate: new Date()
     };
+    selectedDate: Date = new Date();
 
   constructor(
     public navCtrl: NavController,
@@ -58,6 +60,8 @@ export class UserProfilePage {
            console.log(this.profileData);
            this.author = data.listing.author;
            this.location = data.listing.location;
+           this.weekly_schedules=  data.listing.weekly_schedules;
+
 
            if(this.profileData.listing_images.length > 0){
              this.bg_img = 'https://swtch.cloud/system/images/'+ this.profileData.listing_images[0].id + '/big/' + this.profileData.listing_images[0].image_file_name;
@@ -67,6 +71,7 @@ export class UserProfilePage {
 
            this.loadMap(this.location.latitude, this.location.longitude);
            this.addMarker();
+           this.loadEvents();
          }
         },
         (error) => {
@@ -75,7 +80,14 @@ export class UserProfilePage {
   }
 
   loadEvents() {
-    this.eventSource = this.createRandomEvents();
+    // this.eventSource = this.createRandomEvents();
+    let nowDate = new Date().getDay();
+
+    // console.log("aaaaa", this.weekly_schedules);
+    this.eventSource = [{
+      startTime: this.weekly_schedules[nowDate].start_hour,
+      endTime: this.weekly_schedules[nowDate].end_hour}];
+
   }
 
   onViewTitleChanged(title) {
@@ -171,7 +183,7 @@ export class UserProfilePage {
       position: this.map.getCenter()
     });
   }
-  
+
   dismiss() {
     this.viewCtrl.dismiss();
   }

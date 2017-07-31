@@ -44,6 +44,8 @@ import { AuthService } from '../services/auth.service';
 
 import { Camera } from '@ionic-native/camera';
 import { Crop } from '@ionic-native/crop';
+import { FileTransfer} from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 
 
@@ -124,6 +126,9 @@ import { Crop } from '@ionic-native/crop';
     NativeGeocoder,
     Camera,
     Crop,
+    FileTransfer,
+    File,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

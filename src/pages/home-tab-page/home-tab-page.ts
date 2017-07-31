@@ -36,6 +36,7 @@ export class HomeTabPage {
     lng:string;
     address:string;
     current_marker:any;
+    public oldInfo:any;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -51,9 +52,6 @@ export class HomeTabPage {
     }
 
   ionViewWillEnter(){
-
-    this.person = JSON.parse(window.localStorage.getItem('profile'));
-    console.log(this.person);
     this.accessToken = JSON.parse(window.localStorage.getItem('access_token'));
     if(this.accessToken){
       this.getCallbackData(this.accessToken);
@@ -81,6 +79,10 @@ export class HomeTabPage {
       (error) => {
         console.log(error);
       });
+  }
+
+  getProfileData(){
+    let person_id = window.localStorage.getItem('person_id');
   }
 
   close(fab: FabContainer) {
@@ -124,7 +126,7 @@ export class HomeTabPage {
           if(data.success == false){
             console.log("No data");
          }else{
-           this.profiles = data;
+           this.profiles = data.data;
            console.log(this.profiles);
            this.geolocationData();
          }
@@ -313,8 +315,9 @@ export class HomeTabPage {
 
     for(let i = 0; i<this.profiles.length; i++){
 
-      let latLng = new google.maps.LatLng(this.profiles[i].location.latitude, this.profiles[i].location.longitude);
-      if(this.profiles[i].open == true){
+      // let latLng = new google.maps.LatLng(this.profiles[i].location.latitude, this.profiles[i].location.longitude);
+      let latLng = new google.maps.LatLng(this.profiles[i].latitude, this.profiles[i].longitude);
+      if(this.profiles[i].booked == true){
         this.openState = 'assets/icon/maker_open.png';
       }else{
         this.openState = 'assets/icon/maker_close.png'
@@ -340,7 +343,7 @@ export class HomeTabPage {
 
       if(this.profiles[i].listing_images.length>0){
 
-          bg_img = 'https://swtch.cloud/system/images/'+ this.profiles[i].listing_images[0].id +'/small_3x2/' + this.profiles[i].listing_images[0].image_file_name;
+          bg_img = 'https://swtch.cloud'+ this.profiles[i].listing_images[0];
       } else{
 
         bg_img = 'assets/image/blank.png';
@@ -348,9 +351,9 @@ export class HomeTabPage {
 
       let profile_img;
 
-      if(this.profiles[i].author.image_file_name){
+      if(this.profiles[i].author.avatar.thumb){
 
-        profile_img = 'https://swtch.cloud/system/images/'+ this.profiles[i].author.id +'/thumb/' + this.profiles[i].author.image_file_name;
+        profile_img = 'https://swtch.cloud'+ this.profiles[i].author.avatar.thumb ;
       }else{
 
         profile_img = 'assets/image/avatar.png';
@@ -381,9 +384,15 @@ export class HomeTabPage {
       //   if (infoWindow && this.current_marker!=null) {
       //    infoWindow.close(this.map, this.current_marker);
       //  }
+
+      if(this.oldInfo){
+        this.oldInfo.close();
+      }
+
+      this.oldInfo = infoWindow;
        infoWindow.open(this.map, marker);
       //  this.current_marker = marker;
-      setTimeout(() => { infoWindow.close(this.map, marker); }, 4000);
+      setTimeout(() => { infoWindow.close(this.map, marker); }, 5000);
     });
 
     google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
