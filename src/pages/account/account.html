@@ -1,9 +1,7 @@
 
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+  <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
     <ion-title>Account</ion-title>
     <ion-buttons end>
       <button ion-button class="add_btn" (click)="goEmailAddPage()">

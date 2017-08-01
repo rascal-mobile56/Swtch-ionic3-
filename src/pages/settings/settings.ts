@@ -12,10 +12,12 @@ import { PaymentPage } from '../payment/payment';
 })
 export class SettingsPage {
 
+  profile_img:any;
   constructor(
     public navCtrl: NavController,
-
   ) {
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 goProfilePage(){
   console.log('go Profile Info Page');

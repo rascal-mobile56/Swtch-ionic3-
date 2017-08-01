@@ -6,30 +6,30 @@
 
 <ion-content>
   <div *ngIf="person" class="profile" (click)="close(fab)">
-    <img src="{{person.picture}}" alt="">
-    <p>{{person.nickname}}</p>
+    <img src="https://swtch.cloud{{person.image_url}}" alt="">
+    <p style="width: 80px">{{person.given_name}} {{person.family_name}}</p>
   </div>
 
   <ion-fab left bottom class="fab-nav" #fab>
      <button ion-fab class="main"><ion-icon name="arrow-dropup"></ion-icon></button>
 
-     <ion-fab-list side="top" (click)="close(fab)">
+     <!-- <ion-fab-list side="top" (click)="close(fab)">
        <button ion-fab (click)="goSignPage(fab)"><ion-icon name="md-log-in"></ion-icon></button>
        <button *ngIf="person" ion-fab (click)="goSettingPage()"><ion-icon name="ios-settings"></ion-icon></button>
        <button *ngIf="person" ion-fab (click)="goManagePage()"><ion-icon name="ios-construct"></ion-icon></button>
        <button *ngIf="person" ion-fab (click)="goInboxPage()"><ion-icon name="ios-text"></ion-icon></button>
        <button *ngIf="person" ion-fab (click)="goProfilePage()"><ion-icon name="ios-person"></ion-icon></button>
        <button ion-fab (click)="goListChargerPage(fab)" class="list-charger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-     </ion-fab-list>
+     </ion-fab-list> -->
 
-     <!-- <ion-fab-list side="top" (click)="close(fab)">
+     <ion-fab-list side="top" (click)="close(fab)">
        <button ion-fab (click)="goSignPage(fab)"><ion-icon name="md-log-in"></ion-icon></button>
        <button ion-fab (click)="goSettingPage()"><ion-icon name="ios-settings"></ion-icon></button>
        <button ion-fab (click)="goManagePage()"><ion-icon name="ios-construct"></ion-icon></button>
        <button ion-fab (click)="goInboxPage()"><ion-icon name="ios-text"></ion-icon></button>
        <button ion-fab (click)="goProfilePage()"><ion-icon name="ios-person"></ion-icon></button>
        <button ion-fab (click)="goListChargerPage(fab)" class="list-charger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-     </ion-fab-list> -->
+     </ion-fab-list>
 
   </ion-fab>
   <div class="address" (click)="close(fab)">

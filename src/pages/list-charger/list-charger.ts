@@ -21,6 +21,7 @@ export class ListChargerPage {
     currentLng:number;
     address:string = '';
     list_image:any;
+    profile_img:any;
     // public weeksFlags=[{mon:false}, {tues:false}]
 
     weekdays: Array<{weekday: string, dayToggle: boolean, dayCheck: boolean, from: string, to: string }>;
@@ -35,6 +36,8 @@ export class ListChargerPage {
     private geolocation: Geolocation,
     private camera: Camera,
   ) {
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
     this.address = navParams.get("address");
     this.weekdays = [
       { weekday:'Monday', dayToggle:true, dayCheck:false, from:'', to:''},

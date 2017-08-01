@@ -1,6 +1,7 @@
 
 <ion-header>
   <ion-navbar class="kkk">
+    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
     <button ion-button clear class="header-icon" (click)="dismiss()" left>
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>

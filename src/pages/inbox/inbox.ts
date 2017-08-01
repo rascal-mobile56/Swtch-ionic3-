@@ -12,6 +12,7 @@ items: Array<{avatar: string, name: string, rate:string, comments:string, userna
 
   person_id:string;
   inboxData:any;
+  profile_img:any;
 
   constructor(
     public navCtrl: NavController,
@@ -28,8 +29,10 @@ items: Array<{avatar: string, name: string, rate:string, comments:string, userna
           { avatar: 'assets/icon/avatar4.png', name: 'Evan Shabsove', rate:'$3.5-4.5', comments:'This Kenji Oyama SWTCH Website and also applies to the SWTCH App.', username:'evan_shabsove', timeout: '15h ago' },
           { avatar: 'assets/icon/avatar.png', name: 'Laura Bryson', rate:'$2.5-3.5',comments:'This Laura Bryson SWTCH Website and also applies to the SWTCH App.', username:'laura_bryson', timeout: '17h ago' },
         ];
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
 
-        this.person_id = "";
+    this.person_id = "";
   }
 
   ngOnInit(){

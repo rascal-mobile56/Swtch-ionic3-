@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { InviteFriendPage } from '../invite-friend/invite-friend'
+import { InviteFriendPage } from '../invite-friend/invite-friend';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'page-invite-tab',
@@ -8,16 +9,14 @@ import { InviteFriendPage } from '../invite-friend/invite-friend'
 })
 export class InviteTabPage {
 
-  person:any;
+  profile_img:any = '';
   constructor(
     public navCtrl: NavController,
+    public userService: UserService,
 
   ) {
-  }
-
-  ionViewWillEnter(){
-    this.person = JSON.parse(window.localStorage.getItem('profile'));
-    console.log(this.person);
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
 goInviteFPage(){

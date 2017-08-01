@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ProfileEditPage }  from '../profile-edit/profile-edit';
 import { AccountPage }  from '../account/account';
 import { CarDetailsPage }  from '../car-details/car-details';
 import { PaymentPage}  from '../payment/payment';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'page-profile',
@@ -12,12 +13,47 @@ import { PaymentPage}  from '../payment/payment';
 export class ProfilePage {
 
 
+  public profile_img:any;
+  public person:any;
   constructor(
     public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public userService: UserService,
 
   ) {
-
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
+  ngOnInit(){
+
+    // let person_id = window.localStorage.getItem('person_id');
+    let person_id= "F2z8qVPuveLvUgsIJN1wXw";
+    console.log('person_id', person_id);
+    this.getPersonData(person_id);
+  }
+
+  getPersonData(id){
+    let loading = this.loadingCtrl.create();
+    loading.present();
+
+    this.userService.getPersonData(id)
+      .subscribe(
+        (data) => {
+          loading.dismiss();
+          if(data.success == false){
+            console.log("No data");
+         }else{
+           console.log(data);
+           this.person = data;
+         }
+      },
+      (error) => {
+        loading.dismiss();
+        console.log(error);
+      });
+  }
+
 
   goEditProfilePage(){
     console.log("ProfileEditPage");

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AboutListPage } from '../about-list/about-list';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'page-about-tab',
@@ -8,21 +9,20 @@ import { AboutListPage } from '../about-list/about-list';
 })
 export class AboutTabPage {
   pages: Array<{title: string, url: any, icon: any}>;
-  person:any;
+  profile_img:any = '';
   constructor(
     public navCtrl: NavController,
+    public userService: UserService,
   ) {
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
+
     this.pages = [
       { title: 'About', url: 'assets/About.html', icon: 'ios-information-circle-outline'},
       { title: 'How it works', url: 'assets/HowItWorks.html', icon: 'ios-paper-outline'},
       { title: 'Privacy', url: 'assets/Privacy.html', icon: 'ios-lock-outline' },
       { title: 'Terms of Use', url: 'assets/TermsOfUse.html', icon: 'ios-copy-outline' },
     ];
-  }
-
-  ionViewWillEnter(){
-    this.person = JSON.parse(window.localStorage.getItem('profile'));
-    console.log(this.person);
   }
 
   goAboutPage(title, url){

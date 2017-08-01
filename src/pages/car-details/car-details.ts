@@ -10,6 +10,7 @@ export class CarDetailsPage {
 
   carDetails:any = { maker:'', year:'', model:'', colour:'', license_plate_number:''}
   person_id:any;
+  profile_img:any;
 
   constructor(
     public navCtrl: NavController,
@@ -17,8 +18,11 @@ export class CarDetailsPage {
     public userService: UserService,
 
   ) {
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
   ngOnInit(){
+
     this.person_id = window.localStorage.getItem('person_id');
     // this.person_id= "ckozv7euc19VGaVdnBobbQ";
     console.log(this.person_id);
@@ -36,15 +40,16 @@ export class CarDetailsPage {
           if(data.success == false){
             console.log("No data");
          }else{
-           console.log(data);
+           console.log('carDetails' + data);
            this.carDetails = data;
          }
       },
       (error) => {
+        loading.dismiss();
         console.log(error);
       });
   }
-  updateCarDetails(id){
+  updateCarDetails(){
     let loading = this.loadingCtrl.create();
     loading.present();
 
@@ -54,7 +59,9 @@ export class CarDetailsPage {
     '&car_detail[colour]=' + this.carDetails.colour +
     '&car_detail[license_plate_number]=' + this.carDetails.license_plate_number;
 
-    this.userService.updateCarDetailsData(id, body)
+    // let body = { 'car_detail':{ 'maker': this.carDetails.maker, 'year': this.carDetails.  }}
+
+    this.userService.updateCarDetailsData(this.person_id, body, this.carDetails.id)
       .subscribe(
         (data) => {
           loading.dismiss();
@@ -66,6 +73,7 @@ export class CarDetailsPage {
          }
       },
       (error) => {
+        loading.dismiss();
         console.log(error);
       });
   }

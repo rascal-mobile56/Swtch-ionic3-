@@ -8,12 +8,15 @@ import { NavController, NavParams } from 'ionic-angular';
 export class MessagesSendingPage {
 
   public name:string;
+  public profile_img:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
 
   ) {
     this.name = navParams.get("name");
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
 

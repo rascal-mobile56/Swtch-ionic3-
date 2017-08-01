@@ -27,6 +27,7 @@ export class HomeTabPage {
     map: any;
     profiles:any=[];
     person:any;
+    profile_img:any;
     accessToken:any;
     length:string;
     openState:string;
@@ -36,7 +37,8 @@ export class HomeTabPage {
     lng:string;
     address:string;
     current_marker:any;
-    public oldInfo:any;
+    oldInfo:any;
+
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -46,9 +48,6 @@ export class HomeTabPage {
     private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,
   ) {
-
-    // this.person = JSON.parse(window.localStorage.getItem('profile'));
-    // console.log(this.person);
     }
 
   ionViewWillEnter(){
@@ -61,19 +60,16 @@ export class HomeTabPage {
   }
 
   getCallbackData(token){
-    let loading = this.loadingCtrl.create();
-    loading.present();
     this.userService.callbackData(token)
       .subscribe(
         (data) => {
-          loading.dismiss();
           if(data.success == false){
             console.log("No data");
             this.getMainData();
          }else{
            console.log(data);
            window.localStorage.setItem('person_id', data.api.person_id);
-           this.getMainData();
+           this.getProfileData();
          }
       },
       (error) => {
@@ -83,6 +79,27 @@ export class HomeTabPage {
 
   getProfileData(){
     let person_id = window.localStorage.getItem('person_id');
+    // let person_id = "F2z8qVPuveLvUgsIJN1wXw";
+
+    let loading = this.loadingCtrl.create();
+    loading.present();
+
+    this.userService.getPersonData(person_id)
+      .subscribe(
+        (data) => {
+          loading.dismiss();
+          if(data.success == false){
+            console.log("No data");
+         }else{
+           console.log(data);
+           this.person = data;
+           window.localStorage.setItem('profile_img', data.image_url);
+           this.getMainData();
+         }
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
   close(fab: FabContainer) {
@@ -330,7 +347,6 @@ export class HomeTabPage {
         icon: this.openState,
       });
       let content;
-      // let title = this.profiles[i].title;
       let username;
       if( this.profiles[i].author.family_name || this.profiles[i].author.given_name ){
 
@@ -341,12 +357,11 @@ export class HomeTabPage {
       }
       let bg_img;
 
-      if(this.profiles[i].listing_images.length>0){
-
-          bg_img = 'https://swtch.cloud'+ this.profiles[i].listing_images[0];
-      } else{
+      if(this.profiles[i].listing_images[0] == null){
 
         bg_img = 'assets/image/blank.png';
+      } else {
+        bg_img = 'https://swtch.cloud'+ this.profiles[i].listing_images[0];
       }
 
       let profile_img;
@@ -358,6 +373,12 @@ export class HomeTabPage {
 
         profile_img = 'assets/image/avatar.png';
       }
+
+      let rate;
+      if(this.profiles[i].additional_price_cents == 0){ rate = "$1.5-2.5/h" }
+      else if(this.profiles[i].additional_price_cents == 100) { rate = "$2.5-3.5/h" }
+      else if( this.profiles[i].additional_price_cents == 125 ) { rate = "$2.75-3.75/h" }
+
       content = `<div class="background">
                   <img class="bg" src="`+ bg_img +`" alt="no img">
                   <a class="title" id="title`+ this.profiles[i].id +`">`+ this.profiles[i].title +`</a>
@@ -365,7 +386,7 @@ export class HomeTabPage {
                     <img class="avatar" src="`+ profile_img + `" alt="No IMG">
                     <span>
                       <p class="name">` + username + `</p>
-                      <p>$2.5~3.5/h</p>
+                      <p>` + rate + `</p>
                     </span>
                   </div>
                 </div>`;

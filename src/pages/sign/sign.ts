@@ -9,11 +9,14 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignPage {
 
+  public profile_img:any;
   constructor(
     public navCtrl: NavController,
     public auth: AuthService
 
   ) {
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
 }

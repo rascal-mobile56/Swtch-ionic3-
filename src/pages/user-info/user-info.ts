@@ -14,6 +14,8 @@ export class UserInfoPage {
   public userInfoData:any = { title:'', open: false };
   public userAuthor:any = { id:'', username:'', given_name:'', family_name:'', description:'', image_file_name:''};
   public bg_img:string;
+  public rate:string;
+  public profile_img:any;
 
   constructor(
     public navCtrl: NavController,
@@ -22,8 +24,11 @@ export class UserInfoPage {
     public loadingCtrl: LoadingController,
     public userService: UserService,
   ) {
+
     this.id = navParams.get("id");
     console.log(this.id);
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   ionViewDidLoad(){
@@ -47,8 +52,11 @@ export class UserInfoPage {
            if(this.userInfoData.listing_images.length > 0){
              this.bg_img = 'https://swtch.cloud/system/images/'+ this.userInfoData.listing_images[0].id + '/big/' + this.userInfoData.listing_images[0].image_file_name;
            }else{
-             this.bg_img = 'assets/image/4.jpg';
+             this.bg_img = 'assets/image/blank.png';
            }
+           if(this.userInfoData.additional_price_cents == 0){ this.rate = "$1.5-2.5/h" }
+           else if(this.userInfoData.additional_price_cents == 100){ this.rate = "$2.5-3.5/h" }
+           else if(this.userInfoData.additional_price_cents == 0){ this.rate = "$2.75-3.75/h" }
          }
         },
       (error) => {

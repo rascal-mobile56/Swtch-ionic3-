@@ -26,12 +26,12 @@ export class ProfileEditPage {
     lng:string;
     currentLat:number;
     currentLng:number;
-    profile:any;
     authResult:any;
     person_id:any;
-    person:any = { family_name: '', given_name:'',image:'',phone_number: '',  description:'' };
+    person:any = { family_name: '', given_name:'',image:'',phone_number: '',  description:'', image_url: ''};
     location:any = { address:'', google_address: '', latitude: '', longitude:''};
     imagePath:any;
+    profile_img:any;
 
   constructor(
     public navCtrl: NavController,
@@ -48,14 +48,15 @@ export class ProfileEditPage {
     public userService: UserService,
     public baseService: BaseService,
   ) {
-    this.profile = JSON.parse(window.localStorage.getItem('profile'));
-    console.log(this.profile);
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   ngOnInit(){
+
     this.person_id = window.localStorage.getItem('person_id');
-    // this.person_id= "ckozv7euc19VGaVdnBobbQ";
-    console.log(this.person_id);
+    // this.person_id= "F2z8qVPuveLvUgsIJN1wXw";
+    console.log('personID', this.person_id);
     this.getPersonData(this.person_id);
   }
 
@@ -82,20 +83,20 @@ export class ProfileEditPage {
          }
       },
       (error) => {
+        loading.dismiss();
         console.log(error);
       });
   }
 
   updatePersonData(){
-    let body = '&person[family_name]='+ this.person.family_name
+    let body = 'person[family_name]='+ this.person.family_name
     + '&person[given_name]='+ this.person.given_name
     + '&person[description]=' + this.person.description
-    + '&person[phone_number]='+ this.person.phone_number
-    + '&person[location[address]]=' + this.location.address
-    + '&person[location[google_address]]=' + this.location.address
-    + '&person[location[latitude]]=' + this.lat.toString() +
-    '&person[location[longitude]]=' + this.lng.toString();
-      console.log(body);
+    + '&person[phone_number]='+ this.person.phone_number;
+    // + '&person[location[address]]=' + this.location.address
+    // + '&person[location[google_address]]=' + this.location.address
+    // + '&person[location[latitude]]=' + this.lat.toString() +
+    // '&person[location[longitude]]=' + this.lng.toString();
 
     let loading = this.loadingCtrl.create();
     loading.present();
@@ -112,6 +113,7 @@ export class ProfileEditPage {
          }
       },
       (error) => {
+        loading.dismiss();
         console.log(error);
       });
   }
@@ -277,7 +279,7 @@ export class ProfileEditPage {
           options).then((entry) => {
             console.log("url: " + this.baseService.peopleUrl + "/" + this.person_id);
             if (JSON.stringify(entry).indexOf("error_code") == -1){
-              this.profile.picture = this.imagePath;
+              this.person.image_url = this.imagePath;
               this.imagePath = '';
               loading.dismiss();
               // this.flagService.setChangedFlag(true);

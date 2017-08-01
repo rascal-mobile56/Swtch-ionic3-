@@ -1,6 +1,7 @@
 
 <ion-header>
   <ion-navbar>
+    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
     <button ion-button clear class="header-icon" (click)="dismiss()" left>
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
@@ -17,7 +18,7 @@
 
   <div class="profile">
     <div class="user_img">
-      <img *ngIf="!userAuthor.image_file_name" src="assets/icon/avatar.png" alt="">
+      <img *ngIf="!userAuthor.image_file_name" src="assets/image/avatar.png" alt="">
       <img *ngIf="userAuthor.image_file_name" src="https://swtch.cloud/system/images/{{userAuthor.id}}/small/{{userAuthor.image_file_name}}" alt="">
     </div>
     <div class="contact">
@@ -36,8 +37,8 @@
     <h2>1 opening listing</h2>
     <div class="box"></div>
     <div class="listing_details">
-      <img src="{{bg_img}}" alt="">
-      <p class="rate">$ 1.5-2.5/h</p>
+      <img style="width: 100%;" src="{{bg_img}}" alt="">
+      <p class="rate">{{rate}}</p>
       <p class="user_name">{{userInfoData.title}}</p>
     </div>
   </div>

@@ -14,6 +14,7 @@ export class UserProfilePage {
   @ViewChild('map') mapElement: ElementRef;
     map: any;
 
+    public profile_img:any;
     public id:string;
     public profileData:any = { vailability:'', open:'', title:'',description:'', price_cents:'' };
     public author:any = { family_name:'', given_name:'', id:'', image_file_name:''};
@@ -38,6 +39,8 @@ export class UserProfilePage {
   ) {
     this.id = navParams.get("id");
     console.log(this.id);
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
 
@@ -66,7 +69,7 @@ export class UserProfilePage {
            if(this.profileData.listing_images.length > 0){
              this.bg_img = 'https://swtch.cloud/system/images/'+ this.profileData.listing_images[0].id + '/big/' + this.profileData.listing_images[0].image_file_name;
            }else{
-             this.bg_img = 'assets/image/4.jpg';
+             this.bg_img = 'assets/image/blank.png';
            }
 
            this.loadMap(this.location.latitude, this.location.longitude);

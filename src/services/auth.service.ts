@@ -93,6 +93,8 @@ export class AuthService {
     window.localStorage.removeItem('access_token');
     window.localStorage.removeItem('id_token');
     window.localStorage.removeItem('expires_at');
+    window.localStorage.removeItem('person_id');
+    window.localStorage.removeItem('profile_img');
 
     this.idToken = null;
     this.accessToken = null;

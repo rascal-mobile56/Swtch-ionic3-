@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ContactTeamPage } from '../contact-team/contact-team'
+import { ContactTeamPage } from '../contact-team/contact-team';
 
 @Component({
   selector: 'page-contact-tab',
@@ -8,17 +8,12 @@ import { ContactTeamPage } from '../contact-team/contact-team'
 })
 export class ContactTabPage {
 
-  person:any;
+  profile_img:any;
   constructor(
     public navCtrl: NavController,
-
   ) {
-
-  }
-
-  ionViewWillEnter(){
-    this.person = JSON.parse(window.localStorage.getItem('profile'));
-    console.log(this.person);
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   goContactTeamPage(){

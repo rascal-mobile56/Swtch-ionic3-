@@ -8,14 +8,19 @@ import { EmailAddPage } from '../email-add/email-add';
 })
 export class AccountPage {
 
+  profile_img:any;
+
   constructor(
     public navCtrl: NavController,
 
   ) {
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
-goEmailAddPage(){
-  console.log("go EmailAddPage")
-  this.navCtrl.push(EmailAddPage);
-}
+
+  goEmailAddPage(){
+    console.log("go EmailAddPage")
+    this.navCtrl.push(EmailAddPage);
+  }
 
 }

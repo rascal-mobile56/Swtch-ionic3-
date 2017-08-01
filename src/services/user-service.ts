@@ -38,10 +38,10 @@ export class UserService {
   updatePersonData(person_id, body){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.baseService.peopleUrl + person_id + '?' + body, options)
+    console.log(this.baseService.peopleUrl + person_id + '?' +body);
+    return this.http.patch(this.baseService.peopleUrl + person_id + '?' + body, options)
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
-
   }
 
   getCarDetailsData(person_id){
@@ -49,10 +49,11 @@ export class UserService {
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
   }
-  updateCarDetailsData(person_id, body){
+  updateCarDetailsData(person_id, body, car_id){
     console.log(body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    console.log(this.baseService.peopleUrl + person_id + '/car_details/' + car_id+ '?' + body)
     return this.http.post(this.baseService.peopleUrl + person_id + '/car_details?' + body, options)
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));

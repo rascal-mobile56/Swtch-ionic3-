@@ -10,6 +10,7 @@ import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
 })
 export class AboutListPage {
 
+  profile_img:any;
   public title:string;
   public url:any;
   link: SafeResourceUrl;
@@ -24,6 +25,8 @@ export class AboutListPage {
     this.url = navParams.get("url");
     console.log(this.title, this.url);
     this.link = this.domSanitizer.bypassSecurityTrustResourceUrl(this.url);
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   backHome(){

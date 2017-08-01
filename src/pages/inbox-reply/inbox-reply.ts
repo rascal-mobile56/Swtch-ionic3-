@@ -7,11 +7,14 @@ import { NavController, NavParams,  ViewController, } from 'ionic-angular';
 })
 export class InboxReplyPage {
 
+  profile_img:any;
   constructor(
     public navCtrl: NavController,
     public viewCtrl: ViewController
 
   ) {
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
 
