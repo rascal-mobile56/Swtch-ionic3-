@@ -15,12 +15,15 @@ export class InviteTabPage {
     public userService: UserService,
 
   ) {
-    this.profile_img = window.localStorage.getItem('profile_img');
+  }
+
+  ionViewDidEnter(){
+    this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
     console.log(this.profile_img);
   }
 
-goInviteFPage(){
-  console.log("Go InviteFriendPage");
-  this.navCtrl.push(InviteFriendPage);
-}
+  goInviteFPage(){
+    console.log("Go InviteFriendPage");
+    this.navCtrl.push(InviteFriendPage);
+  }
 }

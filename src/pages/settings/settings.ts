@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ProfileEditPage } from '../profile-edit/profile-edit';
 import { AccountPage } from '../account/account';
-import { NotificationPage } from '../notification/notification';
+// import { NotificationPage } from '../notification/notification';
+import { InboxPage } from '../inbox/inbox';
 import { CarDetailsPage } from '../car-details/car-details';
 import { PaymentPage } from '../payment/payment';
 
@@ -16,28 +17,36 @@ export class SettingsPage {
   constructor(
     public navCtrl: NavController,
   ) {
-    this.profile_img = window.localStorage.getItem('profile_img');
+
+  }
+  ionViewDidEnter(){
+    this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
     console.log(this.profile_img);
   }
-goProfilePage(){
-  console.log('go Profile Info Page');
-  this.navCtrl.push(ProfileEditPage);
-}
-goAccountPage(){
-  console.log('go Account Page');
-  this.navCtrl.push(AccountPage);
-}
-goNotiPage(){
-  console.log('go Notification Page');
-  this.navCtrl.push(NotificationPage);
-}
-goCarDetailsPage(){
-  console.log('go Car Details Page');
-  this.navCtrl.push(CarDetailsPage);
-}
-goPaymentPage(){
-  console.log('go Payment Page');
-  this.navCtrl.push(PaymentPage);
-}
+  goProfilePage(){
+    console.log('go Profile Info Page');
+    this.navCtrl.push(ProfileEditPage);
+  }
+  goAccountPage(){
+    console.log('go Account Page');
+    this.navCtrl.push(AccountPage);
+  }
+  // goNotiPage(){
+  //   console.log('go Notification Page');
+  //   this.navCtrl.push(NotificationPage);
+  // }
+  goInboxPage(){
+    console.log('goMessageBox');
+    this.navCtrl.push(InboxPage);
+  }
+
+  goCarDetailsPage(){
+    console.log('go Car Details Page');
+    this.navCtrl.push(CarDetailsPage);
+  }
+  goPaymentPage(){
+    console.log('go Payment Page');
+    this.navCtrl.push(PaymentPage);
+  }
 
 }

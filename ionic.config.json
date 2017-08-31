@@ -1,5 +1,8 @@
 {
-  "name": "SwtchIonic",
-  "app_id": "a4c35a76",
-  "type": "ionic-angular"
+  "name": "myapp",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

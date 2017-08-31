@@ -2,7 +2,7 @@
 
 <ion-header>
   <ion-navbar>
-    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
+    <img *ngIf="profile_img" src="{{profile_img}}" alt="" class="header_img">
     <ion-title>Invite for Friends</ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,6 +11,6 @@
 
   <img src="assets/image/bg_contact.jpg" style="width: 100%;">
   <img class="invite" src="assets/image/invite_log.png">
-  <h4 style="text-align:center;">Please invite your fiends for SWTCH</h4>
+  <h4 style="text-align:center;">Invite your friends to SWTCH</h4>
   <button ion-button style="width: 100%; margin-top: 6vh;" (click)="goInviteFPage()">Invite New Members</button>
 </ion-content>

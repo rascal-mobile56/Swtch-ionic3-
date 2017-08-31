@@ -1,5 +1,18 @@
 page-user-info {
 
+  .header_img{
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    right: 5px;
+    border-radius: 50%;
+    }
+    .md .header_img{
+      bottom: -4px;
+    }
+    .ios .header_img{
+      bottom: 5px;
+    }
   .bg_title{
     background: url("../assets/image/4.jpg");
     width: 100%;
@@ -134,7 +147,16 @@ page-user-info {
       box-shadow: 1px 1px 16px #b5b5b5;
       .user-photo{
         margin-right: 10px;
+        img{
+          width: 60px;
+          height: 60px;
+        }
       }
+      .text-descript{
+        white-space: initial;
+        color: #488aff;
+      }
+
       .thum-up{
         font-size: 23px !important;
         padding: 0 !important;

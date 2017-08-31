@@ -14,10 +14,13 @@ export class AccountPage {
     public navCtrl: NavController,
 
   ) {
+    this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
+  }
+  ionViewDidEnter(){
     this.profile_img = window.localStorage.getItem('profile_img');
     console.log(this.profile_img);
   }
-
   goEmailAddPage(){
     console.log("go EmailAddPage")
     this.navCtrl.push(EmailAddPage);

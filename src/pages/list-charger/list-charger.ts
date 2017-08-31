@@ -36,8 +36,6 @@ export class ListChargerPage {
     private geolocation: Geolocation,
     private camera: Camera,
   ) {
-    this.profile_img = window.localStorage.getItem('profile_img');
-    console.log(this.profile_img);
     this.address = navParams.get("address");
     this.weekdays = [
       { weekday:'Monday', dayToggle:true, dayCheck:false, from:'', to:''},
@@ -77,11 +75,16 @@ export class ListChargerPage {
   }
 
   ionViewDidLoad(){
+
     if(this.address){
       this.searchAddress(this.address);
     }else{
       this.geolocationData();
     }
+  }
+  ionViewDidEnter(){
+    this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   geolocationData(){

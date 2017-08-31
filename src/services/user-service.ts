@@ -19,6 +19,7 @@ export class UserService {
       .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
   }
   getProfileData(id){
+    console.log(this.baseService.baseUrl + "listings/" + id);
     return this.http.get(this.baseService.baseUrl + "listings/" + id)
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
@@ -30,6 +31,7 @@ export class UserService {
       .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
   }
   getPersonData(person_id){
+    console.log(this.baseService.peopleUrl + person_id);
     return this.http.get(this.baseService.peopleUrl + person_id)
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
@@ -60,8 +62,45 @@ export class UserService {
   }
 
   getInboxData(person_id){
-    return this.http.get(this.baseService.peopleUrl + person_id + '/inboxes')
+    let url = this.baseService.peopleUrl + person_id + '/inboxes';
+    console.log(url);
+    return this.http.get(url)
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
   }
+
+  getTransactionsData(person_id, id){
+    let url = this.baseService.peopleUrl + person_id + '/transactions/' + id;
+    console.log(url);
+    return this.http.get(url)
+      .map((res:Response)=>res.json())
+      .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getConversationsData(person_id, id){
+    let url = this.baseService.peopleUrl + person_id + '/conversations/' + id;
+    console.log(url);
+    return this.http.get(url)
+      .map((res:Response)=>res.json())
+      .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getBookingData(id, params){
+    let url = this.baseService.baseUrl + 'listings/' + id + '/initiate?' + params;
+    console.log(url);
+    return this.http.get(url)
+      .map((res:Response)=>res.json())
+      .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
+  }
+  uploadBookingData(id, params){
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let url = this.baseService.baseUrl + 'listings/' + id + '/initiated?' + params;
+    console.log(url);
+    return this.http.post(url, options)
+      .map((res:Response)=>res.json())
+      .catch((error:any)=>Observable.throw(error.json().error || 'Server error'));
+  }
+
 }

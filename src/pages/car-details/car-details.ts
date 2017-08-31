@@ -17,16 +17,19 @@ export class CarDetailsPage {
     public loadingCtrl: LoadingController,
     public userService: UserService,
 
-  ) {
-    this.profile_img = window.localStorage.getItem('profile_img');
-    console.log(this.profile_img);
+) {
   }
   ngOnInit(){
 
-    this.person_id = window.localStorage.getItem('person_id');
+    this.person_id = 'https://swtch.cloud' + window.localStorage.getItem('person_id');
     // this.person_id= "ckozv7euc19VGaVdnBobbQ";
     console.log(this.person_id);
     this.getCarDetailsData(this.person_id);
+  }
+
+  ionViewDidEnter(){
+    this.profile_img = window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   getCarDetailsData(id){

@@ -48,8 +48,6 @@ export class ProfileEditPage {
     public userService: UserService,
     public baseService: BaseService,
   ) {
-    this.profile_img = window.localStorage.getItem('profile_img');
-    console.log(this.profile_img);
   }
 
   ngOnInit(){
@@ -59,6 +57,11 @@ export class ProfileEditPage {
     console.log('personID', this.person_id);
     this.getPersonData(this.person_id);
   }
+  //
+  // ionViewDidEnter(){
+  //   this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
+  //   console.log(this.profile_img);
+  // }
 
   getPersonData(id){
     let loading = this.loadingCtrl.create();
@@ -74,6 +77,7 @@ export class ProfileEditPage {
          }else{
            console.log(data);
            this.person = data;
+           this.profile_img = 'https://swtch.cloud' + data.image_url;
            if(!data.location){
              this.locationData(true);
            } else{
@@ -92,11 +96,11 @@ export class ProfileEditPage {
     let body = 'person[family_name]='+ this.person.family_name
     + '&person[given_name]='+ this.person.given_name
     + '&person[description]=' + this.person.description
-    + '&person[phone_number]='+ this.person.phone_number;
-    // + '&person[location[address]]=' + this.location.address
-    // + '&person[location[google_address]]=' + this.location.address
-    // + '&person[location[latitude]]=' + this.lat.toString() +
-    // '&person[location[longitude]]=' + this.lng.toString();
+    + '&person[phone_number]='+ this.person.phone_number
+    + '&person[location[address]]=' + this.location.address
+    + '&person[location[google_address]]=' + this.location.address
+    + '&person[location[latitude]]=' + this.lat +
+    '&person[location[longitude]]=' + this.lng;
 
     let loading = this.loadingCtrl.create();
     loading.present();
@@ -183,8 +187,6 @@ export class ProfileEditPage {
     });
   }
 
-
-
    profileImageSelect() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Modify your album',
@@ -193,7 +195,6 @@ export class ProfileEditPage {
           text: 'Camera',
           handler: () => {
             let options:CameraOptions = {
-              quality: 100,
               destinationType: this.camera.DestinationType.FILE_URI,
               encodingType: this.camera.EncodingType.JPEG,
               sourceType: this.camera.PictureSourceType.CAMERA,
@@ -202,12 +203,9 @@ export class ProfileEditPage {
               this.crop.crop(imageData, {quality: 75})
                 .then(newImage => {
 
-                  var sourceDirectory = newImage.substring(0, newImage.lastIndexOf('/') + 1);
-                  var sourceFileName = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.length);
-                  sourceFileName = sourceFileName.split('?').shift();
+                  console.log('NewImage', newImage);
+                  this.updatePhoto(newImage);
 
-                  this.imagePath = newImage;
-                  this.updatePhoto();
                 },error => console.error('Error cropping image', error)
               );
             }, (err) => {
@@ -218,28 +216,19 @@ export class ProfileEditPage {
           text: 'Photo Library',
           handler: () => {
             let options:CameraOptions = {
-                quality: 100,
-                 destinationType: this.camera.DestinationType.FILE_URI,
-                 encodingType: this.camera.EncodingType.JPEG,
-                 mediaType: this.camera.MediaType.PICTURE,
-                 sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-               }
+                destinationType: this.camera.DestinationType.FILE_URI,
+                encodingType: this.camera.EncodingType.JPEG,
+                mediaType: this.camera.MediaType.PICTURE,
+                sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+              }
               this.camera.getPicture(options).then((imageData) => {
-
-                console.log(imageData);
                 this.crop.crop(imageData, {quality: 75})
                 .then(newImage => {
 
-                  var sourceDirectory = newImage.substring(0, newImage.lastIndexOf('/') + 1);
-                  var sourceFileName = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.length);
-                  sourceFileName = sourceFileName.split('?').shift();
+                  console.log('NewImage', newImage);
+                  this.updatePhoto(newImage);
 
-                  this.imagePath = newImage;
-                  let base64Image = 'data:image/jpeg;base64,' + newImage;
-
-                  console.log(base64Image);
-                  this.updatePhoto();
-                },error=>console.error('Error cropping image', JSON.stringify(error))
+                  },error=>console.error('Error cropping image', JSON.stringify(error))
                 );
                }, (err) => {
                 alert(JSON.stringify(err))
@@ -257,29 +246,28 @@ export class ProfileEditPage {
       actionSheet.present();
     }
 
-    updatePhoto(){
+    updatePhoto(image){
       let loading = this.loadingCtrl.create();
       loading.present();
 
-      if (this.imagePath){
+      if (image){
 
-        let filename = this.imagePath.split('/').pop();
+        let filename = image.split('/').pop();
         let options = {
           fileKey: "person[image]",
           fileName: filename,
           chunkedMode: false,
-          httpMethod: "PATCH",
+          httpMethod: "PUT",
           mimeType: "image/jpg",
-
         };
 
         const fileTransfer: FileTransferObject = this.transfer.create();
 
-        fileTransfer.upload(this.imagePath, this.baseService.peopleUrl + "/" + this.person_id,
-          options).then((entry) => {
-            console.log("url: " + this.baseService.peopleUrl + "/" + this.person_id);
+        console.log('url' , this.baseService.peopleUrl + this.person_id);
+        fileTransfer.upload(image, this.baseService.peopleUrl + this.person_id, options)
+        .then((entry) => {
             if (JSON.stringify(entry).indexOf("error_code") == -1){
-              this.person.image_url = this.imagePath;
+              this.person.image_url = image;
               this.imagePath = '';
               loading.dismiss();
               // this.flagService.setChangedFlag(true);
@@ -288,7 +276,6 @@ export class ProfileEditPage {
               loading.dismiss();
               console.log("success:" + JSON.stringify(entry));
             }
-
           }, (err) => {
             loading.dismiss();
             console.log("failed:" + JSON.stringify(err));

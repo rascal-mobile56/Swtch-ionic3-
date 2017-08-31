@@ -1,7 +1,7 @@
 
 <ion-header>
   <ion-navbar>
-    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
+    <img *ngIf="profile_img" src="{{profile_img}}" alt="" class="header_img">
     <ion-title>Profile Edit</ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,7 +9,7 @@
 <ion-content class="custom-content" padding>
   <div class="person">
     <!-- <img *ngIf="!person.picture && !local_img" src="assets/image/avatar.png" alt=""> -->
-    <img *ngIf="person" src="https://swtch.cloud{{person.image_url}}" class="avatar-icon"/>
+    <img *ngIf="person" src="{{profile_img}}" class="avatar-icon"/>
     <img *ngIf="!person" src="assets/image/avatar.png"/>
     <button ion-button small (click)="profileImageSelect()">Edit</button>
   </div>

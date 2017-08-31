@@ -1,25 +1,23 @@
 
 <ion-header>
   <ion-navbar>
-    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
+    <img *ngIf="profile_img" src="{{profile_img}}" alt="" class="header_img">
     <ion-title>Inbox</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="custom-content">
-    <ion-card *ngFor="let item of inboxData">
-      <div (click)="goInboxReplyPage()">
+    <ion-card *ngFor="let item of inboxData" (click)="goInboxReplyPage(item.transaction_id, item.conversation_id)">
         <ion-item>
           <ion-avatar item-start class="avatar">
             <img src="https://swtch.cloud{{item.author.avatar}}">
           </ion-avatar>
           <h2>{{item.author.first_name}} {{item.author.last_name}}</h2>
-          <p>{{item.last_message_at | amTimeAgo}}</p>
+          <p>{{item.last_activity_at | amTimeAgo}}</p>
         </ion-item>
         <ion-card-content class="card-content">
           <p>{{item.last_message_content}}</p>
         </ion-card-content>
-
         <ion-row>
           <ion-col>
             <button ion-button icon-left clear small color="dark">
@@ -32,7 +30,6 @@
             </button>
           </ion-col>
         </ion-row>
-      </div>
 
     </ion-card>
 </ion-content>

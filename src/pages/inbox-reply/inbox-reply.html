@@ -1,35 +1,69 @@
 
 <ion-header>
-  <ion-navbar>
-    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
+  <ion-navbar class="kkk">
+    <img *ngIf="profile_img" src="{{profile_img}}" alt="" class="header_img">
     <button ion-button clear class="header-icon" (click)="dismiss()" left>
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
-    <ion-title>Conversation with </ion-title>
+    <ion-title>Conversation</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2 class="title">SWTCH Test Charger</h2>
-  <div class="">
-    <ion-item class="text_input">
-        <ion-label color="primary" stacked>About You</ion-label>
-        <ion-textarea class="textarea" name="comment" placeholder="About you"></ion-textarea>
-    </ion-item>
-    <button ion-button class="reply_msg" (click)="replyMessage()">Send Reply</button>
-  </div>
-  <div class="details">
-    <img src="assets/image/avatar.png" alt="">
-    <div class="message-box">
-      <p>KenjiKkk OyamaKk <span>1 hour ago</span></p>
-      <div class="message-left">
-        <p>Thank you for your reply
-          <br>Please send me reply messsage
-        </p>
-      </div>
+  <div class="" *ngIf="transactionsData">
+    <h2 class="title">Conversation with <span style="color: #166fff">{{transactionsData.conversation_other_party.display_name}}</span></h2>
 
+
+    <div class="">
+      <div class="transaction">
+        <div class="message1">
+          <p class="des1">Booked Hours</p>
+          <p class="des2">From: {{start_date}} at {{start_time}}<br>
+            To:{{end_date}} at {{end_time}}
+            <br>({{total_hours}}hour)</p>
+        </div>
+        <div class="message2">
+          <p class="des1">Additional Price Per Hour</p>
+          <p class="des2">${{additional_price}}/hr</p>
+        </div>
+        <div class="message3">
+          <p class="des1">Total</p>
+          <p class="des2">${{total_money}}</p>
+        </div>
+      </div>
+      <ion-item class="text_input">
+          <ion-label color="primary" stacked>Write a reply:</ion-label>
+          <ion-textarea class="textarea" name="comment" placeholder="About you"></ion-textarea>
+      </ion-item>
+      <button ion-button class="reply_msg" (click)="replyMessage()">Send Reply</button>
     </div>
+
+    <div *ngFor="let item of messageData">
+      <div [ngClass]="{'details-left' : (item.sender.avatar == this.original_photo), 'details-right':  (item.sender.avatar != this.original_photo)}"  >
+        <p class="name">{{item.sender.display_name}} <span>{{item.created_at | amTimeAgo}}</span></p>
+        <div class="message-box">
+          <img src="https://swtch.cloud{{item.sender.avatar}}" alt="" class="photo">
+
+          <div class="message" [ngClass]="{'red':(item.mood == 'negative'), 'green': (item.mood == 'positive')}">
+            <p>{{item.content}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <!-- <div class="" *ngIf="transactionsData">
+    <p>TransactionsData Data</p>
+  </div> -->
+
+
+  <div class="" *ngIf="conversationsData">
+    <p>Conversation Data</p>
+  </div>
+
+
+
 
 
 </ion-content>

@@ -1,7 +1,8 @@
 
 <ion-header>
   <ion-navbar>
-    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
+    <img *ngIf="profile_img" src="{{profile_img}}" alt="" class="header_img">
+
     <button ion-button clear class="header-icon" (click)="dismiss()" left>
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
@@ -38,7 +39,7 @@
     <div class="box"></div>
     <div class="listing_details">
       <img style="width: 100%;" src="{{bg_img}}" alt="">
-      <p class="rate">{{rate}}</p>
+      <p class="rate">${{min_rate}}~{{max_rate}}/h</p>
       <p class="user_name">{{userInfoData.title}}</p>
     </div>
   </div>
@@ -48,54 +49,28 @@
     <div class="box"></div>
     <div class="people">
       <div class="person">
-        <img src="assets/icon/avatar1.png" alt="">
+        <img src="assets/image/avatar.png" alt="">
         <p>Black Chai</p>
-        <button ion-button outline small>Follow</button>
-      </div>
-      <div class="person">
-        <img src="assets/icon/avatar2.png" alt="">
-        <p>Maria Toy</p>
-        <button ion-button outline small>Follow</button>
-      </div>
-      <div class="person">
-        <img src="assets/icon/avatar3.png" alt="">
-        <p>Maria Toy</p>
         <button ion-button outline small>Follow</button>
       </div>
     </div>
   </div>
 
-  <div class="reivew">
-    <h2>10 received reviews (100% positive, 10/10)</h2>
+  <div class="reivew" *ngIf="review_Value">
+    <h2>{{review_Value}} received reviews ({{review_percent}} positive, {{review_ok}}/{{review_Value}})</h2>
     <div class="box"></div>
     <ion-list>
-      <ion-item class="thumb-list">
+      <ion-item class="thumb-list" *ngFor="let item of user_Recieve">
         <ion-thumbnail item-start class="user-photo">
-          <img src="assets/icon/avatar1.png">
+          <img *ngIf="!item.image_url" src="assets/icon/avatar1.png">
+          <img *ngIf="item.image_url" src="https://swtch.cloud{{item.image_url}}">
         </ion-thumbnail>
-        <h3>wow, so nice and super clean</h3>
-        <p>mv_belcourt about listing CargePoint L2 <br> 22 days ago</p>
-        <button ion-button clear item-end class="thum-up"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+        <h3>{{item.name}}</h3>
+        <p class="text-descript">{{item.text}}</p>
+        <p>{{item.created_at | amTimeAgo}}</p>
+        <button *ngIf="item.grade" ion-button clear item-end class="thum-up"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+        <button *ngIf="!item.grade" ion-button clear item-end class="thum-up"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
       </ion-item>
-
-      <ion-item class="thumb-list">
-        <ion-thumbnail item-start class="user-photo">
-          <img src="assets/icon/avatar2.png">
-        </ion-thumbnail>
-        <h3>Thanks all went well</h3>
-        <p>mastroiapino 1 about listing Pino's evduty <br>30 days ago</p>
-        <button ion-button clear item-end class="thum-up"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-      </ion-item>
-
-      <ion-item class="thumb-list">
-        <ion-thumbnail item-start class="user-photo">
-          <img src="assets/icon/avatar3.png">
-        </ion-thumbnail>
-        <h3>Good Stuff!</h3>
-        <p>Carter Li about listing SWTCH Test Charger<br>2 months ago</p>
-        <button ion-button clear item-end class="thum-up"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-      </ion-item>
-
     </ion-list>
   </div>
 </ion-content>

@@ -9,13 +9,12 @@ import { UserService } from '../../services/user-service';
 })
 export class AboutTabPage {
   pages: Array<{title: string, url: any, icon: any}>;
-  profile_img:any = '';
+  profile_img:any;
   constructor(
     public navCtrl: NavController,
     public userService: UserService,
   ) {
-    this.profile_img = window.localStorage.getItem('profile_img');
-    console.log(this.profile_img);
+
 
     this.pages = [
       { title: 'About', url: 'assets/About.html', icon: 'ios-information-circle-outline'},
@@ -23,6 +22,11 @@ export class AboutTabPage {
       { title: 'Privacy', url: 'assets/Privacy.html', icon: 'ios-lock-outline' },
       { title: 'Terms of Use', url: 'assets/TermsOfUse.html', icon: 'ios-copy-outline' },
     ];
+  }
+
+  ionViewDidEnter(){
+    this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   goAboutPage(title, url){

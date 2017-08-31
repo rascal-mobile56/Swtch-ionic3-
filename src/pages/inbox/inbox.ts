@@ -29,16 +29,17 @@ items: Array<{avatar: string, name: string, rate:string, comments:string, userna
           { avatar: 'assets/icon/avatar4.png', name: 'Evan Shabsove', rate:'$3.5-4.5', comments:'This Kenji Oyama SWTCH Website and also applies to the SWTCH App.', username:'evan_shabsove', timeout: '15h ago' },
           { avatar: 'assets/icon/avatar.png', name: 'Laura Bryson', rate:'$2.5-3.5',comments:'This Laura Bryson SWTCH Website and also applies to the SWTCH App.', username:'laura_bryson', timeout: '17h ago' },
         ];
-    this.profile_img = window.localStorage.getItem('profile_img');
-    console.log(this.profile_img);
-
     this.person_id = "";
   }
 
   ngOnInit(){
     this.person_id = window.localStorage.getItem('person_id');
-    this.person_id = 'F2z8qVPuveLvUgsIJN1wXw';
+    // this.person_id = 'VK_xasQiVDwY5huh1WDe5g';
     this.getInboxData(this.person_id);
+  }
+  ionViewDidEnter(){
+    this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   getInboxData(id){
@@ -58,15 +59,17 @@ items: Array<{avatar: string, name: string, rate:string, comments:string, userna
          }
       },
       (error) => {
+        loading.dismiss();
         console.log(error);
       });
   }
 
-  goInboxReplyPage(val){
-    console.log('go UserProfile Page');
-    let profileModal = this.modalCtrl.create( InboxReplyPage );
+  goInboxReplyPage(transaction_id, conversation_id){
+    console.log('go Conversation Page');
+    let profileModal = this.modalCtrl.create( InboxReplyPage, {
+      transaction_id:transaction_id,
+      conversation_id: conversation_id
+    } );
     profileModal.present();
   };
-
-
 }

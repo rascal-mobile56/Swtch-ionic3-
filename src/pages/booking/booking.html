@@ -1,0 +1,47 @@
+
+
+<ion-content class="main-view">
+  <div class="overlay" (click)="dismiss()"></div>
+  <div class="modal_content">
+    <div class="title">Finalize Booking</div>
+
+    <div class="booking_forms">
+      <div class="from">
+        <ion-item class="part"  style="padding-right: 2vw;">
+          <ion-label color="dark" stacked>Booking From</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY/MMM/DD" [(ngModel)]="start_on" class="input_box" max="2030" min="{{todayValue}}">
+          </ion-datetime>
+          <!-- <div class=""></div> -->
+        </ion-item>
+
+        <ion-item class="part">
+          <ion-label color="dark" stacked>Select Time</ion-label>
+          <ion-select [(ngModel)]="from_timer.value" class="input_box" >
+            <ion-option *ngFor="let item of time_list" value="{{item}}">{{item}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <div class="to">
+        <ion-item class="part"  style="padding-right: 2vw;">
+          <ion-label color="dark" stacked>Booking To</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY/MMM/DD" [(ngModel)]="end_on" class="input_box" max="2030" min="{{start_on}}">
+          </ion-datetime>
+        </ion-item>
+        <ion-item class="part">
+          <ion-label color="dark" stacked>Select Time</ion-label>
+          <ion-select [(ngModel)]="to_timer.value" class="input_box" >
+            <ion-option *ngFor="let item of time_list" value="{{item}}">{{item}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <ion-item>
+        <ion-label color="dark" stacked>Coupon Code</ion-label>
+        <ion-input type="text" [(ngModel)]="coupon_code" placeholder="Enter coupon code" class="input_box"></ion-input>
+      </ion-item>
+    </div>
+    <button ion-button class="send_book" (click)="bookingData()">Rent</button>
+    <!-- <button ion-button class="send_book" (click)="setDate(1)">to</button> -->
+  </div>
+</ion-content>

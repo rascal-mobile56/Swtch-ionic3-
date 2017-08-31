@@ -1,0 +1,87 @@
+page-booking {
+  .main-view{
+    background: transparent;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: .5;
+    background-color: #333;
+  }
+  .modal_content {
+    position: absolute;
+    top: calc(50% - 225px);
+    left: 0;
+    right: 0;
+    width: 96%;
+    height: 450px;
+    padding: 10px;
+    z-index: 100;
+    margin: 0 auto;
+    padding: 10px;
+    color: #333;
+    background: #e8e8e8;
+    background: -moz-linear-gradient(top, #fff 0%, #e8e8e8 100%);
+    background: -webkit-linear-gradient(top, #fff 0%, #e8e8e8 100%);
+    background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(51, 51, 51, .35);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    overflow: hidden;
+
+    .title
+    {
+      font-size: 20px;
+      text-align: center;
+      border-bottom: 1px solid;
+      height: 38px;
+      line-height: 35px;
+      font-weight: 600;
+    }
+    .from, .to{
+      width: 100%;
+      display: inline-flex;
+      margin: 10px 0 20px;
+      .part{
+        width: 50%;
+        padding-left: 0;
+      }
+    }
+    .item{
+      background-color: transparent;
+      .label{
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+    .item-input{
+      padding-left: 0px;
+
+    }
+    .input_box{
+      border: 1px solid;
+      height: 40px;
+      padding-left: 10px;
+      .text-input{
+          margin: 5px;
+          height: 30px;
+      }
+    }
+    .item-inner{
+      padding: 0 !important;
+    }
+  }
+  .send_book{
+    width: 100%;
+    margin: 20px 0;
+  }
+  .item-label-stacked .select, .item-label-floating .select{
+    padding: 10px 5px;
+  }
+
+}

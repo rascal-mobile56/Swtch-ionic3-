@@ -1,0 +1,33 @@
+
+<ion-header>
+  <ion-navbar>
+    <img *ngIf="profile_img" src="{{profile_img}}" alt="" class="header_img">
+    <ion-title>Rent</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="custom-content" padding>
+  <h3>Details</h3>
+  <div class="description">
+    <p><span style="color: #1372cc">{{title}}</span> by <span style="color: #1372cc">{{client_name}}</span></p>
+    <div class="description-box">
+      Booked hours
+      <p>From:{{start_day}} at {{start_hour}}</p>
+      <p>To:{{end_day}} at {{end_hour}}</p>
+      <p>({{total_hour}}hours)</p>
+      <h5>Total<span>${{total_money}}</span></h5>
+    </div>
+  </div>
+  <div class="send-message">
+    <h3>Message to {{client_name}}</h3>
+    <ion-item class="textbox">
+        <ion-textarea class="textarea" name="comment" placeholder="" [(ngModel)]="message"></ion-textarea>
+    </ion-item>
+    <button ion-button style="width: 100%; margin-top: 25px;" (click)="sendMessage()">Pay with saved card **** {{last_number}}</button>
+  </div>
+  <button ion-button style="width: 100%; margin-top: 25px;">New Card</button>
+  <p>You will be charged only if {{client_name}} accepts the transaction.
+    {{client_name}} needs to accept the transaction within 7 days .
+    If {{client_name}} declines or does not respond , no charge is made.</p>
+
+</ion-content>

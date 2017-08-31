@@ -14,7 +14,11 @@ export class ProfilePage {
 
 
   public profile_img:any;
-  public person:any;
+  public email: any = '';
+  public person:any = { family_name:'', given_name:'', updated_at:'', phone_number:'',
+                        location:''};
+  public car_detail = { maker:'', year:'', model:'', colour:'', license_plate_number:'', updated_at:''}
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -22,15 +26,18 @@ export class ProfilePage {
     public userService: UserService,
 
   ) {
-    this.profile_img = window.localStorage.getItem('profile_img');
-    console.log(this.profile_img);
   }
   ngOnInit(){
 
-    // let person_id = window.localStorage.getItem('person_id');
-    let person_id= "F2z8qVPuveLvUgsIJN1wXw";
+    let person_id = window.localStorage.getItem('person_id');
+    // let person_id= "F2z8qVPuveLvUgsIJN1wXw";
     console.log('person_id', person_id);
     this.getPersonData(person_id);
+  }
+
+  ionViewDidEnter(){
+    this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
+    console.log(this.profile_img);
   }
 
   getPersonData(id){
@@ -46,6 +53,10 @@ export class ProfilePage {
          }else{
            console.log(data);
            this.person = data;
+           if(data.emails.length > 0){
+             this.email = data.emails[0].address;
+           }
+           this.car_detail = data.car_detail;
          }
       },
       (error) => {

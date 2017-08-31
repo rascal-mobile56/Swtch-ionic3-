@@ -2,7 +2,7 @@
 
 <ion-header>
   <ion-navbar>
-    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
+    <img *ngIf="profile_img" src="{{profile_img}}" alt="" class="header_img">
     <ion-title>Profile</ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,11 +10,12 @@
 <ion-content class="custom-content">
   <div class="pro_page">
     <div class="info">
-      <p class="name">Kenji Oyama</p>
-      <p>Maniwa, Japan</p>
+      <p class="name">{{person.given_name}} {{person.family_name}}</p>
+      <p *ngIf="person.location">{{person.location.address}}</p>
+      <p *ngIf="!person.location">-</p>
     </div>
     <div class="avatar">
-      <img src="assets/image/avatar.png"/>
+      <img src="https://swtch.cloud{{person.image_url}}"/>
     </div>
   </div>
 
@@ -24,24 +25,28 @@
          <p>Profile Information</p>
          <button type="button" color="default" class="edit" small (click)="goEditProfilePage()">Edit</button>
         </div>
-       <div class="updated-date">Last Updated 2017.07.10</div>
+       <div class="updated-date">Last Updated {{person.updated_at | date: 'MM/dd/yyyy'}}</div>
      </ion-item-divider>
       <div class="title1">
         <ion-row center>
-            <div class="value1">First Name:</div>
-            <div class="value2">Kenji</div>
+            <div class="value1">Family Name:</div>
+            <div *ngIf="person.family_name" class="value2">{{person.family_name}}</div>
+            <div *ngIf="!person.family_name" class="value2"></div>
         </ion-row>
         <ion-row center>
-            <div class="value1">Last Name:</div>
-            <div class="value2">Oyama</div>
+            <div class="value1">Given Name:</div>
+            <div *ngIf="person.given_name" class="value2">{{person.given_name}}</div>
+            <div *ngIf="!person.given_name" class="value2"></div>
         </ion-row>
         <ion-row center>
             <div class="value1">Location:</div>
-            <div class="value2">Maniwa-shi, Japan</div>
+            <div *ngIf="person.location" class="value2">{{person.location.google_address}}</div>
+            <div *ngIf="!person.location" class="value2"></div>
         </ion-row>
         <ion-row center>
             <div class="value1">Phone:</div>
-            <div class="value2">+81 123456789</div>
+            <div *ngIf="person.phone_number" class="value2">{{person.phone_number}}</div>
+            <div *ngIf="!person.phone_number" class="value2"></div>
         </ion-row>
       </div>
   </ion-item-group>
@@ -52,20 +57,23 @@
          <p>Account</p>
          <button type="button" color="default" class="edit" small (click)="goAccountPage()">Edit</button>
        </div>
-       <div class="updated-date">Last Updated 2017.07.10</div>
+       <div class="updated-date">Last Updated {{person.updated_at | date: 'MM/dd/yyyy'}}</div>
      </ion-item-divider>
       <div class="title1">
         <ion-row center>
-            <div class="value1">First Name:</div>
-            <div class="value2">Kenji</div>
+            <div class="value1">Full Name:</div>
+            <div *ngIf="person.family_name || person.given_name" class="value2">{{person.given_name}} {{person.family_name}}</div>
+            <div *ngIf="!person.family_name && !person.given_name" class="value2"></div>
         </ion-row>
         <ion-row center>
-            <div class="value1">Last Name:</div>
-            <div class="value2">Oyama</div>
+            <div class="value1">Username:</div>
+            <div class="value2">{{person.username}}</div>
+            <div *ngIf="!person.username" class="value2"></div>
         </ion-row>
         <ion-row center>
-            <div class="value1">Location:</div>
-            <div class="value2">Maniwa-shi, Japan</div>
+            <div class="value1">Email:</div>
+            <div *ngIf="email"  class="value2">{{email}}</div>
+            <div *ngIf="email" class="value2"></div>
         </ion-row>
         <ion-row center>
             <div class="value1">Phone:</div>
@@ -77,59 +85,44 @@
   <ion-item-group class="group">
      <ion-item-divider color="light" sticky>
        <div class="section-header">
-         <p>User Information</p>
-         <button type="button" color="default" class="edit" small>Edit</button>
-       </div>
-       <div class="updated-date">Last Updated 2017.07.10</div>
-     </ion-item-divider>
-      <div class="title1">
-        <ion-row center>
-            <div class="value1">username:</div>
-            <div class="value2">Oyamamadam</div>
-        </ion-row>
-        <ion-row center>
-            <div class="value1">Edit Address:</div>
-            <div class="value2">Oyama</div>
-        </ion-row>
-      </div>
-  </ion-item-group>
-
-  <ion-item-group class="group">
-     <ion-item-divider color="light" sticky>
-       <div class="section-header">
          <p>Car Details</p>
        <button type="button" color="default" class="edit" small (click)="goCarDetailsPage()">Edit</button></div>
-       <div class="updated-date">Last Updated 2017.07.10</div>
+       <div class="updated-date">Last Updated {{car_detail.updated_at | date: 'MM/dd/yyyy'}}</div>
      </ion-item-divider>
       <div class="title1">
         <ion-row center>
             <div class="value1">Maker:</div>
-            <div class="value2">Evin Shabsove</div>
+            <div *ngIf="car_detail.maker" class="value2">{{car_detail.maker}}</div>
+            <div *ngIf="!car_detail.maker" class="value2">{{car_detail.maker}}</div>
         </ion-row>
         <ion-row center>
             <div class="value1">Year:</div>
-            <div class="value2">2016</div>
+            <div *ngIf="car_detail.year" class="value2">{{car_detail.year}}</div>
+            <div *ngIf="!car_detail.year" class="value2">{{car_detail.year}}</div>
         </ion-row>
       </div>
       <div class="title1">
         <ion-row center>
-            <div class="value1">Maker:</div>
-            <div class="value2">Evin Shabsove</div>
+            <div class="value1">Model:</div>
+            <div *ngIf="car_detail.model" class="value2">{{car_detail.model}}</div>
+            <div *ngIf="!car_detail.model" class="value2">{{car_detail.model}}</div>
         </ion-row>
         <ion-row center>
-            <div class="value1">Color:</div>
-            <div class="value2">Silver White</div>
+            <div class="value1">Colour:</div>
+            <div *ngIf="car_detail.colour" class="value2">{{car_detail.colour}}</div>
+            <div *ngIf="!car_detail.colour" class="value2">{{car_detail.colour}}</div>
         </ion-row>
       </div>
       <div class="title1">
         <ion-row center>
             <div class="value1">License Plate Number:</div>
-            <div class="value2">123456789</div>
+            <div *ngIf="!car_detail.license_plate_number" class="value2">{{car_detail.license_plate_number}}</div>
+            <div *ngIf="car_detail.license_plate_number" class="value2">{{car_detail.license_plate_number}}</div>
         </ion-row>
       </div>
   </ion-item-group>
 
-
+<!--
   <ion-item-group class="group">
      <ion-item-divider color="light" sticky>
        <div class="section-header">
@@ -180,5 +173,5 @@
           <div class="value2">123456789</div>
       </ion-row>
     </div>
-  </ion-item-group>
+  </ion-item-group> -->
 </ion-content>

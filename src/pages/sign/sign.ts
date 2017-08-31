@@ -15,8 +15,9 @@ export class SignPage {
     public auth: AuthService
 
   ) {
-    this.profile_img = window.localStorage.getItem('profile_img');
+  }
+  ionViewDidEnter(){
+    this.profile_img = 'https://swtch.cloud' + window.localStorage.getItem('profile_img');
     console.log(this.profile_img);
   }
-
 }

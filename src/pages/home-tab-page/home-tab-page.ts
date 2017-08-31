@@ -28,7 +28,6 @@ export class HomeTabPage {
     profiles:any=[];
     person:any;
     profile_img:any;
-    accessToken:any;
     length:string;
     openState:string;
     currentLat:number;
@@ -48,13 +47,16 @@ export class HomeTabPage {
     private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,
   ) {
+
     }
 
   ionViewWillEnter(){
-    this.accessToken = JSON.parse(window.localStorage.getItem('access_token'));
-    if(this.accessToken){
-      this.getCallbackData(this.accessToken);
+    let accessToken = JSON.parse(window.localStorage.getItem('access_token'));
+    console.log('accessToken', accessToken);
+    if(accessToken){
+      this.getCallbackData(accessToken);
     }else{
+      window.localStorage.clear();
       this.getMainData();
     }
   }
@@ -391,20 +393,16 @@ export class HomeTabPage {
                   </div>
                 </div>`;
 
-      this.addInfoWindow(marker, content, this.profiles[i].id);
+      this.addInfoWindow(marker, content, this.profiles[i].id, this.profiles[i].author.id);
     }
   }
-  addInfoWindow(marker, content, id){
+  addInfoWindow(marker, content, id, user_id){
 
     let infoWindow = new google.maps.InfoWindow({
       content: content
     });
 
     google.maps.event.addListener(marker, 'click', () => {
-      //   console.log('maker click' + infoWindow);
-      //   if (infoWindow && this.current_marker!=null) {
-      //    infoWindow.close(this.map, this.current_marker);
-      //  }
 
       if(this.oldInfo){
         this.oldInfo.close();
@@ -412,23 +410,23 @@ export class HomeTabPage {
 
       this.oldInfo = infoWindow;
        infoWindow.open(this.map, marker);
-      //  this.current_marker = marker;
       setTimeout(() => { infoWindow.close(this.map, marker); }, 5000);
     });
 
     google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
       document.getElementById('title' + id).addEventListener('click', () => {
-        this.goUserProfileModal(id);
+        this.goUserProfileModal(id, user_id);
       });
       document.getElementById('map' + id).addEventListener('click', () => {
+        // this.goUserInfoPage(author_id);
         this.goUserInfoPage(id);
       });
     });
   }
 
-  goUserProfileModal(val){
+  goUserProfileModal(id, user_id){
     console.log('go UserProfile Page');
-    let profileModal = this.modalCtrl.create(UserProfilePage, { id: val });
+    let profileModal = this.modalCtrl.create(UserProfilePage, { id: id, user_id: user_id });
     profileModal.present();
   };
 

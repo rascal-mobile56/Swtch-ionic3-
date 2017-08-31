@@ -100,6 +100,7 @@ $background-color: #dedede;
     position: absolute;
     width: 76%;
     left: 12%;
+    
   }
 }
 .fab-nav{
@@ -124,6 +125,35 @@ $background-color: #dedede;
     color: white;
     font-size: 25px;
   }
+}
+.item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner{
+  box-shadow: none;
+}
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+  box-shadow: none;
+}
+.list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child{
+  box-shadow: none;
+}
 
+modal-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
+@media not all and (min-height: 600px) and (min-width: 768px) {
+  ion-modal ion-backdrop {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-height: 0px) and (min-width: 0px) {
+  .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }

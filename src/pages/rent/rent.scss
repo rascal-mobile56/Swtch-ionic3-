@@ -1,0 +1,36 @@
+page-rent {
+
+  .description{
+
+    .description-box{
+      background-color: #eaeaea;
+      padding: 5px 10px;
+      font-size: 16px;
+      p{
+        margin: 2px;
+        font-size: 16px;
+        padding-left: 50px;
+      }
+      span{
+        float: right;
+      }
+    }
+  }
+
+  .send-message{
+    margin-top: 30px;
+  }
+  .textbox{
+    padding-left: 0;
+    .item-inner{
+      padding: 0 !important;
+      .text-input{
+        padding: 10px !important;
+        border: 1px solid;
+        margin: 0;
+        width: 100%;
+        height: 120px;
+      }
+    }
+  }
+}

@@ -33,7 +33,10 @@ import { PaymentPage } from '../pages/payment/payment';
 import { AboutListPage } from '../pages/about-list/about-list';
 import { UserInfoPage } from '../pages/user-info/user-info';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { BookingPage } from '../pages/booking/booking';
 import { ListChargerPage } from '../pages/list-charger/list-charger';
+import { RentPage } from '../pages/rent/rent';
+import { PayReplyPage } from '../pages/pay-reply/pay-reply';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -47,7 +50,7 @@ import { Crop } from '@ionic-native/crop';
 import { FileTransfer} from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 
-
+import { DatePicker } from '@ionic-native/date-picker';
 
 @NgModule({
   declarations: [
@@ -77,6 +80,11 @@ import { File } from '@ionic-native/file';
     AboutListPage,
     UserInfoPage,
     UserProfilePage,
+    BookingPage,
+    RentPage,
+    PayReplyPage,
+
+
 
   ],
   imports: [
@@ -85,6 +93,7 @@ import { File } from '@ionic-native/file';
     IonicModule.forRoot(MyApp),
     HttpModule,
     MomentModule,
+
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
@@ -114,6 +123,10 @@ import { File } from '@ionic-native/file';
     AboutListPage,
     UserInfoPage,
     UserProfilePage,
+    BookingPage,
+    RentPage,
+    PayReplyPage,
+
 
   ],
   providers: [
@@ -127,7 +140,9 @@ import { File } from '@ionic-native/file';
     Camera,
     Crop,
     FileTransfer,
+    DatePicker,
     File,
+
 
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

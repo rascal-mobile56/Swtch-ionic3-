@@ -1,7 +1,7 @@
 
 <ion-header>
   <ion-navbar class="kkk">
-    <img *ngIf="profile_img" src="https://swtch.cloud{{profile_img}}" alt="" class="header_img">
+    <img *ngIf="profile_img" src="{{profile_img}}" alt="" class="header_img">
     <button ion-button clear class="header-icon" (click)="dismiss()" left>
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
@@ -19,8 +19,8 @@
        <p>{{author.family_name}} {{author.given_name}}</p>
        <button ion-button block small (click)="sendMessagePage(name)">Contact</button>
     </div>
-    <div class="feedback">
-    <p>{{profileData.price_cents}}% positive <br>(6/6)</p>
+    <div class="feedback" *ngIf="review_Value">
+    <p>{{review_percent}}% positive <br>({{review_ok}}/{{review_Value}})</p>
       <img src="assets/icon/star.png" alt="no star">
     </div>
   </div>
@@ -47,13 +47,48 @@
               (onEventSelected)="onEventSelected($event)"
               (onTitleChanged)="onViewTitleChanged($event)"
               (onTimeSelected)="onTimeSelected($event)"
-              step="30">
+              step="30" (click)="goBookingModal()">
   </calendar>
 
 
   <div class="map-item">
     <div #map id="map"></div>
   </div>
+
+  <ion-item-group class="group">
+     <ion-item-divider color="light" sticky>
+       <div class="section-header"><ion-icon name="md-chatbubbles" style="padding-right: 10px;"></ion-icon>Public Discussion</div>
+     </ion-item-divider>
+
+     <ion-card *ngFor="let item of comments">
+      <ion-item>
+        <ion-avatar item-start class="avatar">
+          <img *ngIf="!item.image_url" src="assets/image/avatar.png">
+          <img *ngIf="item.image_url" src="{{item.image_url}}">
+        </ion-avatar>
+        <h2 *ngIf="!item.name">Marty McFly</h2>
+        <h2 *ngIf="item.name">{{item.name}}</h2>
+        <p>{{item.updated_at | amTimeAgo}}</p>
+      </ion-item>
+      <ion-card-content>
+        <p>{{item.content}}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list>
+
+    <ion-item class="input-box">
+        <ion-textarea [(ngModel)]="comment" class="textarea" name="comment" placeholder="{{placeholder}}"></ion-textarea>
+
+    </ion-item>
+    <ion-item *ngFor="let item of outlets">
+      <ion-label>Notify me of new comments and updates</ion-label>
+      <ion-checkbox [(ngModel)]="item.notify"></ion-checkbox>
+    </ion-item>
+    <button ion-button full style="margin-top: 15px;">Send Comment</button>
+  </ion-list>
+
+  </ion-item-group>
+
 
   <ion-item-group class="group">
      <ion-item-divider color="light" sticky>
@@ -86,34 +121,12 @@
   <ion-item-group class="group">
      <ion-item-divider color="light" sticky>
        <div class="section-header"><p style="font-size: 15px;">Time slots available for service(15minute intervals)</p></div>
-       <div class="updated-date">2017.07.10</div>
+       <div class="updated-date">Last updated {{ weekly_updated | date: 'MM/dd/yyyy'}}</div>
      </ion-item-divider>
-   <div class="detail">
-      <p class="title1">Sunday:</p>
-      <div class="title2">
-         <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>1145 - 1515</p>
-      </div>
-      <p class="title1">Moday:</p>
-      <div class="title2">
-        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0600 - 0830</p>
-        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>1000 - 1330</p>
-      </div>
-      <p class="title1">Tuesday:</p>
-      <div class="title2">
-        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0000 - 0630</p>
-      </div>
-      <p class="title1">Wednesday:</p>
-      <div class="title2">
-        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0345 - 0830</p>
-        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>1000 - 1930</p>
-      </div>
-      <p class="title1">Thursday:</p>
-      <div class="title2">
-        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0600 - 0830</p>
-      </div>
-      <p class="title1">Saturday:</p>
-      <div class="title2">
-        <p><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>0000 - 0830</p>
+   <div class="detail" *ngFor="let p of weeks">
+      <p class="title1">{{p.week}}</p>
+      <div class="title2" *ngFor="let item of weekly_schedules">
+         <p *ngIf="item.day_of_week==p.id"><ion-icon class="icon-tt" name="ios-arrow-dropright-outline"></ion-icon>{{item.start_hour}} - {{item.end_hour}}</p>
       </div>
    </div>
   </ion-item-group>
